@@ -4,10 +4,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int health;
-    [SerializeField] protected int MAX_HEALTH;
-    [SerializeField] protected int speed;
-    [SerializeField] protected int damage;
+    public EnemyData enemyData;
+    [SerializeField] protected Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,4 +17,6 @@ public abstract class Enemy : MonoBehaviour
     {
         
     }
+
+    public abstract void Move();
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float health = 100;
-    [SerializeField] private float MAX_HEALTH = 100;
-    [SerializeField] private float enemySpeed = 5;
+    public Enemy enemyScript;
+    public int health;
+    public int speed;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        
+        InitEnemy();
     }
 
     // Update is called once per frame
@@ -21,9 +21,11 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     void FixedUpdate()
     {
-        transform.Translate(Vector2.left*enemySpeed*Time.fixedDeltaTime);
+       enemyScript.Move();
     }
-    public void TakeDamage(int damage)
+    
+    
+    public virtual void TakeDamage(int damage)
     {
         health -= damage;
         Debug.Log("Health left: " + health);
@@ -32,9 +34,15 @@ public class EnemyController : MonoBehaviour, IDamageable
             Die();
         }
     }
-
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void InitEnemy()
+    {
+        enemyScript = GetComponent<Enemy>();
+        health = enemyScript.enemyData.health;
+        speed = enemyScript.enemyData.speed;
     }
 }
