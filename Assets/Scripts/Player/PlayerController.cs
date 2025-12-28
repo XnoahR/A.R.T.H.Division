@@ -38,15 +38,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Flip(GameObject currentWeapon)
+    public void Flip(Transform weaponPivot)
     {
         isRight = !isRight;
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
-        Vector3 wScale = currentWeapon.transform.localScale;
-        wScale.x *= -1;
-        wScale.y *= -1;
-        currentWeapon.transform.localScale = wScale;
+
+        
+        // Vector3 wScale = currentWeapon.transform.localScale;
+        // wScale.x *= -1;
+        // wScale.y *= -1;
+        // currentWeapon.transform.localScale = wScale;
+        Vector3 aScale = weaponPivot.transform.localScale;
+        aScale.x *= -1;
+        aScale.y *= -1;
+        weaponPivot.transform.localScale = aScale;
     }
 }

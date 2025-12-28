@@ -7,6 +7,8 @@ public class WeaponController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform weaponContainer;
+    [SerializeField] private Transform weaponPivot;
+    [SerializeField] private Transform armPivot;
     [SerializeField] private GameObject currentWeapon;
     [SerializeField] private GunData gunData;
     [SerializeField] private PlayerController playerController;
@@ -78,6 +80,9 @@ public class WeaponController : MonoBehaviour
 
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             aimDirection = (mouse - transform.position).normalized;
+            Vector2 direction = aimDirection;
+            float angle = MathF.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            weaponPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
         if (fireDelay > 0)
         {
@@ -87,7 +92,7 @@ public class WeaponController : MonoBehaviour
 
         if ((aimDirection.x < 0 && playerController.isRight) || (aimDirection.x > 0 && !playerController.isRight))
         {
-            playerController.Flip(currentWeapon);
+            playerController.Flip(weaponPivot);
         }
     }
 
@@ -100,7 +105,7 @@ public class WeaponController : MonoBehaviour
     public int CalculateDamage()
     {
         return gunData.damage + gunData.bulletData.additionalDamage;
-        
+
     }
     IEnumerator Reload()
     {
@@ -114,7 +119,7 @@ public class WeaponController : MonoBehaviour
 
     private bool InputMode()
     {
-        bool input = currentWeaponFunc.FireMode == Weapon.FIREMODE.FULLAUTO? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
+        bool input = currentWeaponFunc.FireMode == Weapon.FIREMODE.FULLAUTO ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
         return input;
     }
     void SetupWeapon(GunData gunData)
