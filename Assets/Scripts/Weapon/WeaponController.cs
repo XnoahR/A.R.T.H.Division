@@ -78,11 +78,17 @@ public class WeaponController : MonoBehaviour
                 Debug.Log($"Changed to : ${currentWeaponFunc.FireMode}");
             }
 
-            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            aimDirection = (mouse - transform.position).normalized;
-            Vector2 direction = aimDirection;
-            float angle = MathF.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            weaponPivot.transform.rotation = Quaternion.Euler(0, 0, angle);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Plane plane = new Plane(Vector3.forward, weaponPivot.position);
+
+            if (plane.Raycast(ray, out float enter))
+            {
+                Vector3 hitPoint = ray.GetPoint(enter);
+                Vector2 direction = (hitPoint - weaponPivot.position).normalized;
+                aimDirection = direction;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                weaponPivot.rotation = Quaternion.Euler(0, 0, angle);
+            }
         }
         if (fireDelay > 0)
         {

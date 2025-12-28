@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6236508562962841362}
   - component: {fileID: 1949898324029622159}
   - component: {fileID: 7345262669348868795}
+  - component: {fileID: 1374459782235408537}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: O-1NK
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,9 +120,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4018cae94e31053498c92fee34103ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyScript: {fileID: 0}
   health: 100
-  MAX_HEALTH: 100
-  enemySpeed: 5
+  speed: 5
+--- !u!114 &1374459782235408537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8843931330506033743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee49aceca92fe884baef43cf8ff99475, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 11400000, guid: 31312547f8cd906459e61cb539ffdabf, type: 2}
+  rb: {fileID: 0}
 --- !u!1001 &7012801323394335690
 PrefabInstance:
   m_ObjectHideFlags: 0

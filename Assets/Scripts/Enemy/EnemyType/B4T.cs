@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class B4T : Enemy
+public class B4T : Enemy, IFlyable
 {
 
     void Start()

@@ -4,11 +4,25 @@ using UnityEngine;
 
 public class EnemySpawnerController : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyReference;
+    [Header("Spawner Setup")]
+    [SerializeField] private SpawnerData spawnerReference;
     [SerializeField] private bool canSpawn = true;
-    private float cooldownTime = 0;
+
+    [Header("Delay")]
+    [Range(0.0f, 10.0f)]
+    [SerializeField] private float delayMin;
+    [Range(0.0f, 10.0f)]
+    [SerializeField] private float delayMax;
+    private int MAX_SPAWNED_ENEMIES;
+    private int spawnCounter = 0;
     private Coroutine spawner;
     // Start is called before the first frame update
+    void Awake()
+    {
+        MAX_SPAWNED_ENEMIES = spawnerReference.enemies.Count;
+        spawnCounter = 0;
+    }
+
     void Start()
     {
         spawner = StartCoroutine(SpawnEnemy());
@@ -20,17 +34,25 @@ public class EnemySpawnerController : MonoBehaviour
         while (canSpawn)
         {
 
-            float delay = Random.Range(5, 8);
+            float delay = Random.Range(delayMin, delayMax);
             float countdown = delay;
-
+            float YSpawnPos = -1f;
             while (countdown > 0f)
             {
                 Debug.Log($"Spawn in: {Mathf.CeilToInt(countdown)}");
                 yield return new WaitForSeconds(1f);
                 countdown -= 1f;
             }
-            Instantiate(enemyReference, transform.position, transform.rotation);
-
+            GameObject enemyReference = spawnerReference.enemies[spawnCounter];
+            YSpawnPos = enemyReference.GetComponent<IFlyable>() != null ? 3.5f: YSpawnPos;
+            Vector3 spawnPosition = new Vector3(transform.position.x, YSpawnPos, transform.position.z);
+            GameObject enemyGO = Instantiate(enemyReference, spawnPosition, transform.rotation);
+            spawnCounter++;
+            if(spawnCounter >= MAX_SPAWNED_ENEMIES)
+            {
+                canSpawn = false;
+                Debug.Log("Limit reached, spawner off.");
+            }
         }
     }
     void Update()

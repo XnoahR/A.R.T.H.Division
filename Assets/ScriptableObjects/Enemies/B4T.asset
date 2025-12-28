@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef46d6a8665ce7342befab8584d37191, type: 3}
   m_Name: B4T
   m_EditorClassIdentifier: 
-  health: 0
-  MAX_HEALTH: 0
-  speed: 0
-  damage: 0
-  isFly: 0
+  health: 30
+  MAX_HEALTH: 30
+  speed: 6
+  damage: 10
+  isFly: 1
