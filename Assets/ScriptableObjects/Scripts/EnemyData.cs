@@ -9,6 +9,7 @@ public class EnemyData : ScriptableObject
      public int MAX_HEALTH;
      public int speed;
      public int damage;
+     public int attackSpeed;
      public bool isFly;
 
 }

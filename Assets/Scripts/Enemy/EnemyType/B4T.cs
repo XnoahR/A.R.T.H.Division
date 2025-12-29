@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class B4T : Enemy, IFlyable
+public class B4T : Enemy, IFlyable, IShotable
 {
 
     void Start()
@@ -20,6 +20,15 @@ public class B4T : Enemy, IFlyable
     }
 
 
-    
+    public override void Attack(Transform attackTarget, int damage)
+    {
+        Fire(attackTarget, damage);
+    }
+
+    public virtual void Fire(Transform attackTarget, int damage)
+    {
+        GameObject bulletGO = Instantiate(bulletData.BulletGO, firePoint.position, firePoint.rotation);
+        bulletGO.GetComponent<EnemyBulletController>().Init(bulletData, damage);
+    }
     
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    public Transform firePoint;
+    public BulletData bulletData;
     public EnemyData enemyData;
     [SerializeField] protected Rigidbody2D rb;
     // Start is called before the first frame update
@@ -19,4 +21,5 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract void Move();
+    public abstract void Attack(Transform attackTarget, int damage);
 }

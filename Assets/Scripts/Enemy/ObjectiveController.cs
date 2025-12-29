@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class O1NK : Enemy
+public class ObjectiveController : MonoBehaviour, IDamageable
 {
+    [SerializeField] private int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +17,9 @@ public class O1NK : Enemy
         
     }
 
-    public override void Move()
+    public void TakeDamage (int damage)
     {
-         transform.Translate(Vector3.left * enemyData.speed * Time.fixedDeltaTime);
+        health -= damage;
+        Debug.Log($"Take damage : {damage}, Health Left: {health}");
     }
 }

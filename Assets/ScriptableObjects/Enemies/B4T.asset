@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 30
   MAX_HEALTH: 30
-  speed: 6
+  speed: 0
   damage: 10
   isFly: 1

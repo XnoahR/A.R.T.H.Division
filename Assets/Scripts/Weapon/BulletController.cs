@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed;
+   
     [SerializeField] private BulletData data;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private int damage;
@@ -25,7 +25,7 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             IDamageable damageable = collision.GetComponent<IDamageable>();
             if (damageable != null)
