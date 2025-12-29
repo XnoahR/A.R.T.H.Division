@@ -18,6 +18,7 @@ public class AssaultRifle : Weapon
  
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -26,6 +27,8 @@ public class AssaultRifle : Weapon
     {
         GameObject bulletGO = Instantiate(bulletData.BulletGO, firePoint.position, firePoint.rotation);
         bulletGO.GetComponent<BulletController>().Init(bulletData, damage);
-        Destroy(bulletGO, 5);
+        Destroy(bulletGO, 4);
+        StartCoroutine(MuzzleFlash());
+        audioSource.PlayOneShot(shotSFX);
     }
 }

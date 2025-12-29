@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AssaultBullet_01
   m_EditorClassIdentifier: 
   additionalDamage: 5
-  bulletSpeed: 15
+  bulletSpeed: 30
   BulletGO: {fileID: 2462463634215689395, guid: 8879acb7bd4c05e4cab332e416bbd3d0, type: 3}

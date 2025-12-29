@@ -148,6 +148,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: a2d3a4031c7b50340bc414f5d9ccbce9, type: 2}
   rb: {fileID: 0}
   damage: 0
+  bulletHitEffect: {fileID: 1296642704342996810, guid: 83fbedd879edb0c4d8621227c5d4e53c, type: 3}
 --- !u!50 &64167125318907819
 Rigidbody2D:
   serializedVersion: 4

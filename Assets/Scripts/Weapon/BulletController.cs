@@ -8,6 +8,8 @@ public class BulletController : MonoBehaviour
     [SerializeField] private BulletData data;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private int damage;
+    [SerializeField] private GameObject bulletHitEffect;
+    [SerializeField] private GameObject hitSound;
     // Start is called before the first frame update
     public void Init(BulletData bulletData, int damage)
     {
@@ -29,9 +31,16 @@ public class BulletController : MonoBehaviour
             if (damageable != null)
             {
                 damageable.TakeDamage(damage);
+                Instantiate(bulletHitEffect, transform.position, transform.rotation);
+                GameObject hitSoundGO = Instantiate(hitSound, transform.position, transform.rotation);
+                Destroy(hitSoundGO, 1);
                 Destroy(gameObject);
             }
         }
+        else{
+        Instantiate(bulletHitEffect, transform.position, transform.rotation);
         Destroy(gameObject);
+        }
     }
+    
 }

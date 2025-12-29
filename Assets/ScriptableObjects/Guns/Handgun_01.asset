@@ -15,8 +15,8 @@ MonoBehaviour:
   GunName: Handgun_01
   gunType: 0
   shotMode: 0
-  fireRate: 6
-  damage: 10
+  fireRate: 8
+  damage: 17
   magazineCapacity: 18
   punchback: 1
   maxAmmo: 0

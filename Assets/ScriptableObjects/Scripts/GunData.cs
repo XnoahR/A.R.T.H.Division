@@ -22,6 +22,7 @@ public class GunData : ScriptableObject
     [Header("References")]
     public BulletData bulletData;
     public GameObject WeaponGO;
+    
 
 
       public enum GUN_TIPE
