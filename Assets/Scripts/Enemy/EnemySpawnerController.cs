@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawnerController : MonoBehaviour
 {
     [Header("Spawner Setup")]
-    [SerializeField] private SpawnerData spawnerReference;
+    [SerializeField] public SpawnerData spawnerReference;
     [SerializeField] private bool canSpawn = true;
 
     [Header("Delay")]
@@ -17,7 +17,7 @@ public class EnemySpawnerController : MonoBehaviour
     private int spawnCounter = 0;
     private Coroutine spawner;
     // Start is called before the first frame update
-    void Awake()
+    public void Init()
     {
         MAX_SPAWNED_ENEMIES = spawnerReference.enemies.Count;
         spawnCounter = 0;
@@ -25,9 +25,18 @@ public class EnemySpawnerController : MonoBehaviour
 
     void Start()
     {
-        spawner = StartCoroutine(SpawnEnemy());
     }
 
+    public void StartSpawn()
+    {
+        canSpawn = true;
+        StartCoroutine(SpawnEnemy());
+    }
+    public void StopSpawn()
+    {
+        StopCoroutine(SpawnEnemy());
+        spawnCounter = 0;
+    }
     // Update is called once per frame
     IEnumerator SpawnEnemy()
     {

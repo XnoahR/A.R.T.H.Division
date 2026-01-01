@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
+     public static event Action OnEnemyDead;
     public Enemy enemyScript;
     public int health;
     public int speed;
@@ -35,7 +37,6 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log("Health left: " + health);
         if (health <= 0)
         {
             Die();
@@ -43,6 +44,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
     private void Die()
     {
+        OnEnemyDead?.Invoke();
         Destroy(gameObject);
     }
 

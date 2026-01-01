@@ -17,7 +17,6 @@ public class EnemyAttackArea: MonoBehaviour
             if(damageable != null)
             {
                 damageable.TakeDamage(damage);
-                Debug.Log("Oink Attack");
             }
         }
     }
