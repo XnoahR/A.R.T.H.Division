@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 3270373166503583788}
   - component: {fileID: 619868697182069173}
   - component: {fileID: 7408848628670403034}
+  - component: {fileID: 1284205278484532403}
   m_Layer: 0
   m_Name: Handgun1
   m_TagString: Untagged
@@ -146,7 +147,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3678610850089243771}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca6a6424c07a9fe49ae902f0daa70587, type: 3}
   m_Name: 
@@ -254,6 +255,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1284205278484532403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678610850089243771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2613a0aaba375584287426e845309914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 9055100382669050919}
+  fireFlash: {fileID: 7106611272962817935, guid: e717efc7895b1824d86c3122e59456c8, type: 3}
+  bulletData: {fileID: 0}
+  canSwitchFireMode: 0
+  fireMode: 0
+  audioSource: {fileID: 0}
+  shotSFX: {fileID: 0}
 --- !u!1 &6646524168651113307
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +377,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1293176167
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: df92bddbca9c21846bf482cf05a16c8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

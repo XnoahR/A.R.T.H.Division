@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "EnemyData")]
 public class EnemyData : ScriptableObject
 {
+     public string enemyName;
      public int health;
      public int MAX_HEALTH;
      public int speed;

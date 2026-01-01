@@ -9,9 +9,13 @@ public abstract class Enemy : MonoBehaviour
     public EnemyData enemyData;
     [SerializeField] protected Rigidbody2D rb;
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        if (enemyData.isFly)
+        {
+            rb.gravityScale = 0;
+        }
     }
 
     // Update is called once per frame
@@ -20,6 +24,9 @@ public abstract class Enemy : MonoBehaviour
         
     }
 
-    public abstract void Move();
+    public virtual void Move()
+    {
+        transform.Translate(Vector3.left * enemyData.speed * Time.fixedDeltaTime);
+    }
     public abstract void Attack(Transform attackTarget, int damage);
 }

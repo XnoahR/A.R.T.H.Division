@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyBullet_01
   m_EditorClassIdentifier: 
   additionalDamage: 0
-  bulletSpeed: 0
-  BulletGO: {fileID: 0}
+  bulletSpeed: 10
+  BulletGO: {fileID: 9106972022951865676, guid: 5a55ecd4a562e614eaf2856e82707241, type: 3}

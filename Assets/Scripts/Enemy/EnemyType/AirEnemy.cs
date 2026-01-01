@@ -2,22 +2,12 @@
 using UnityEngine;
 
 
-public class B4T : Enemy, IFlyable, IShotable
+public class AirEnemy : Enemy, IFlyable, IShotable
 {
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        if (enemyData.isFly)
-        {
-            rb.gravityScale = 0;
-        }
-    }
+    
 
-    public override void Move()
-    {
-       transform.Translate(Vector3.left * enemyData.speed * Time.fixedDeltaTime);
-    }
+
 
 
     public override void Attack(Transform attackTarget, int damage)

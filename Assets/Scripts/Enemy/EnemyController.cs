@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     }
 
 
-    public virtual void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
         Debug.Log("Health left: " + health);

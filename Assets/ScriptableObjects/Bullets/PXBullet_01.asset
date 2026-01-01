@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef46d6a8665ce7342befab8584d37191, type: 3}
-  m_Name: B4T
+  m_Script: {fileID: 11500000, guid: 823c57198db0b364d9b39c57f8b22e08, type: 3}
+  m_Name: PXBullet_01
   m_EditorClassIdentifier: 
-  health: 30
-  MAX_HEALTH: 30
-  speed: 10
-  damage: 10
-  attackSpeed: 3
-  isFly: 1
+  additionalDamage: 5
+  bulletSpeed: 30
+  BulletGO: {fileID: 2462463634215689395, guid: 49e17fe4597728742bc08eeebded79bd, type: 3}
