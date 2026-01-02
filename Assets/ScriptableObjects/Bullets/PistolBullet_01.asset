@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823c57198db0b364d9b39c57f8b22e08, type: 3}
   m_Name: PistolBullet_01
   m_EditorClassIdentifier: 
-  additionalDamage: 2
+  additionalDamage: 1
   bulletSpeed: 20
   BulletGO: {fileID: 2462463634215689395, guid: 6194f9e466173004f96dda40043a5ff2, type: 3}

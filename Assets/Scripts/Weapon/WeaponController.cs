@@ -45,6 +45,15 @@ public class WeaponController : MonoBehaviour
             Debug.LogError("WeaponContainer is NULL!", this);
             return;
         }
+    }
+
+    void OnEnable()
+    {
+        GameController.OnGameStart += Init;
+    }
+    
+    public void Init()
+    {
         SetupWeapon(gunData);
     }
 
@@ -63,7 +72,8 @@ public class WeaponController : MonoBehaviour
                 {
                     currentWeaponFunc.Fire(CalculateDamage());
                     DecreaseAmmo();
-                    fireDelay = 1 / gunData.fireRate;
+                    fireDelay = 1 / (gunData.fireRate * (1 + (playerController.FireRateLevel*0.1f)));
+                    Debug.Log(fireDelay);
                 }
             }
 
@@ -110,9 +120,15 @@ public class WeaponController : MonoBehaviour
 
     public int CalculateDamage()
     {
-        return gunData.damage + gunData.bulletData.additionalDamage;
+        int damage =  Mathf.FloorToInt(
+            (gunData.damage + gunData.bulletData.additionalDamage)
+            * (1 + (playerController.AttackLevel * 0.1f))
+        );
 
+        Debug.Log(damage);
+        return damage;
     }
+
     IEnumerator Reload()
     {
         isReloading = true;

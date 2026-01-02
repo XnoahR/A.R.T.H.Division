@@ -15,11 +15,11 @@ MonoBehaviour:
   GunName: PxGun
   gunType: 0
   shotMode: 0
-  fireRate: 6
+  fireRate: 10
   damage: 15
   magazineCapacity: 30
   punchback: 1
   maxAmmo: 0
   reloadTime: 1.5
   bulletData: {fileID: 11400000, guid: c163497f2c542ef47900f05f43476878, type: 2}
-  WeaponGO: {fileID: 3678610850089243771, guid: e53359bb5cd34884f9405fb73eb9e4d3, type: 3}
+  WeaponGO: {fileID: 3678610850089243771, guid: 162ab13b4a654094a81c279951cf7e33, type: 3}

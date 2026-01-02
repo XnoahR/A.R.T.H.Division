@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef46d6a8665ce7342befab8584d37191, type: 3}
   m_Name: B4T
   m_EditorClassIdentifier: 
+  enemyName: B4T
   health: 30
   MAX_HEALTH: 30
   speed: 10

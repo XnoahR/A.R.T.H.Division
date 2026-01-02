@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PXBullet_01
   m_EditorClassIdentifier: 
   additionalDamage: 5
-  bulletSpeed: 30
+  bulletSpeed: 40
   BulletGO: {fileID: 2462463634215689395, guid: 49e17fe4597728742bc08eeebded79bd, type: 3}

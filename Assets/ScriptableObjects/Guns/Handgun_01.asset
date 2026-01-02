@@ -16,7 +16,7 @@ MonoBehaviour:
   gunType: 0
   shotMode: 0
   fireRate: 8
-  damage: 17
+  damage: 10
   magazineCapacity: 18
   punchback: 1
   maxAmmo: 0

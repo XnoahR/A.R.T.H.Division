@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef46d6a8665ce7342befab8584d37191, type: 3}
   m_Name: O-1NK
   m_EditorClassIdentifier: 
+  enemyName: O-1NK
   health: 75
   MAX_HEALTH: 75
   speed: 7
-  damage: 0
+  damage: 5
+  attackSpeed: 1
   isFly: 0
