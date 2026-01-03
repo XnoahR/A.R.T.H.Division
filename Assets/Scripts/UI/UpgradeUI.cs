@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UpgradeUI : MonoBehaviour
 {
+    [SerializeField] private DayController dayController;
     public GameObject P1;
     public GameObject P2;
 
@@ -15,6 +16,7 @@ public class UpgradeUI : MonoBehaviour
     public void NextButton()
     {
         P1.gameObject.SetActive(false);
+        dayController.UpgradePage();
         P2.gameObject.SetActive(true);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using Core.Game;
+using System;
 public class PlayerController : MonoBehaviour
 {
     [Header("Stats")]
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isRight = true;
     public bool canPlay = true;
+    public event Action<STAT_TYPE, int> OnStatChanged;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class PlayerController : MonoBehaviour
         ReloadSpeedLevel = 1;
 
     }
-    
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -50,14 +52,34 @@ public class PlayerController : MonoBehaviour
 
     public void AddStats(StatsUpgradeData upgradeData)
     {
-        AttackLevel += upgradeData.attackValue;
-        FireRateLevel += upgradeData.fireRateValue;
-        MagazineCapacityLevel += upgradeData.magazineCapacityValue;
-        ReloadSpeedLevel += upgradeData.reloadSpeedValue;
+        if (upgradeData.attackValue != 0)
+        {
+            AttackLevel += upgradeData.attackValue;
+            OnStatChanged?.Invoke(STAT_TYPE.ATTACK, AttackLevel);
+        }
+
+        if (upgradeData.fireRateValue != 0)
+        {
+            FireRateLevel += upgradeData.fireRateValue;
+            OnStatChanged?.Invoke(STAT_TYPE.FIRE_RATE, FireRateLevel);
+        }
+
+        if (upgradeData.magazineCapacityValue != 0)
+        {
+            MagazineCapacityLevel += upgradeData.magazineCapacityValue;
+            OnStatChanged?.Invoke(STAT_TYPE.MAGAZINE_CAPACITY, MagazineCapacityLevel);
+        }
+
+        if (upgradeData.reloadSpeedValue != 0)
+        {
+            ReloadSpeedLevel += upgradeData.reloadSpeedValue;
+            OnStatChanged?.Invoke(STAT_TYPE.RELOAD_SPEED, ReloadSpeedLevel);
+        }
     }
+
     private void ChangePlayState(GAME_STATE state)
     {
-        canPlay = state == GAME_STATE.PLAY || state == GAME_STATE.DAYSTART || state == GAME_STATE.DAYEND;
+        canPlay = state == GAME_STATE.PLAY || state == GAME_STATE.DAYSTART;
         Debug.Log(canPlay);
     }
 

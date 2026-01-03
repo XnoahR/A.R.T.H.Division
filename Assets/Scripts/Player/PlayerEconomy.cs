@@ -18,7 +18,7 @@ public class PlayerEconomy : MonoBehaviour
 
     void AddMoney()
     {
-        money += 5;
+        money += 100;
         Debug.Log("Money Added");
     }
     

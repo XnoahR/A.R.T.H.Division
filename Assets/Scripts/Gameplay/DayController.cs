@@ -54,13 +54,19 @@ public class DayController : MonoBehaviour
         enemySpawnerController.StopSpawn();
         if (hasNextDay)
         {
-            currentDay++;
+            // UI P1
             OnDayEnded?.Invoke();
             
-            gameController.SetState(GAME_STATE.UPGRADE);
             return;
         }
         Debug.Log("Game End");
+    }
+
+    public void UpgradePage()
+    {
+        currentDay++;
+        OnDayChanged?.Invoke(currentDay);
+        gameController.SetState(GAME_STATE.UPGRADE);
     }
     private IEnumerator StartCount()
     {

@@ -3,28 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core.Game;
 using TMPro;
+using System;
 
 public class UpgradeController : MonoBehaviour
 {
+    public static event Action OnUpgraded;
+    [Header("References")]
+    [SerializeField] List<UpgradeData> upgradeData;
+    [SerializeField] UpgradeContainer upgradeContainer;
     [SerializeField] GameObject player;
     [SerializeField] GameController gameController;
-    [SerializeField] UpgradeData upgradeData;
-    [SerializeField] TextMeshProUGUI upgradeNameText;
+
+    [Header("Settings")]
+    [SerializeField] int refreshCost = 25;
+    [SerializeField] StatsUI statsUI;
+
+    private List<UpgradeData> currentChoices = new();
 
     void OnEnable()
     {
-        upgradeNameText.text = upgradeData.upgradeName;
+        GameController.OnGameUpgrade += Generate;
     }
-    
-    public void Choose()
+
+    void OnDisable()
     {
-        if(player.GetComponent<PlayerEconomy>().money < upgradeData.cost)
+        GameController.OnGameUpgrade -= Generate;
+    }
+
+    public void Generate()
+    {
+        currentChoices = UpgradeRandomizer.Generate(upgradeData, 3);
+        upgradeContainer.Show(currentChoices, this);
+    }
+
+    public void Choose(UpgradeData data)
+    {
+        var economy = player.GetComponent<PlayerEconomy>();
+        if (economy.money < data.cost)
         {
-            Debug.Log("No money!");
+            Debug.Log("Not enough money");
             return;
         }
-        upgradeData.Apply(player);
-        gameController.SetState(GAME_STATE.DAYSTART);
 
+        economy.money -= data.cost;
+        data.Apply(player);
+        OnUpgraded?.Invoke();
+        StartCoroutine(DayStart());
+    }
+
+    IEnumerator DayStart()
+    {
+        yield return new WaitForSeconds(2);
+
+        upgradeContainer.Hide();
+        gameController.SetState(GAME_STATE.DAYSTART);
     }
 }

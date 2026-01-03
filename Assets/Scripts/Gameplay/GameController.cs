@@ -64,6 +64,10 @@ public class GameController : MonoBehaviour
                 dayController.StartDay();
                 OnGamePaused?.Invoke(state);
                 break;
+            case GAME_STATE.DAYEND:
+                Debug.Log(state);
+                OnGamePaused?.Invoke(state);
+                break;
             case GAME_STATE.PAUSE:
                 Time.timeScale = 0;
                 OnGamePaused?.Invoke(state);

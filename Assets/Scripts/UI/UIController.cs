@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        GameController.OnGameUpgrade += UpgradeMode;
+        DayController.OnDayEnded += UpgradeMode;
         GameController.OnGameStart += GameMode;
         weaponController.OnAmmoChange += ammoUI.UpdateAmmoUI;
         dayController.OnDayChanged += dayUI.UpdateDayUI;
