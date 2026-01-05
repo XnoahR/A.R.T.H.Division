@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public Enemy enemyScript;
     public int health;
     public int speed;
+    bool isDie = false;
     // [SerializeField] private BoxCollider2D enemyHitCollider;
     [SerializeField] private BoxCollider2D enemyTriggerObjective;
     [SerializeField] public bool isTargetDetected = false;
@@ -39,6 +40,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
+            if(isDie) return;
+            isDie = true;
             Die();
         }
     }

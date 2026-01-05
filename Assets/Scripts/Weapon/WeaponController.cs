@@ -10,7 +10,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform weaponPivot;
     [SerializeField] private Transform armPivot;
     [SerializeField] private GameObject currentWeapon;
-    [SerializeField] private GunData gunData;
+    [SerializeField] public GunData gunData;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Weapon currentWeaponFunc;
 
@@ -132,7 +132,7 @@ public class WeaponController : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        yield return new WaitForSeconds(gunData.reloadTime);
+        yield return new WaitForSeconds(gunData.reloadTime / (1 + (playerController.ReloadSpeedLevel*0.075f)));
         currentAmmo = magazineCapacity;
         OnAmmoChange?.Invoke(currentAmmo, magazineCapacity);
         isReloading = false;
@@ -151,8 +151,8 @@ public class WeaponController : MonoBehaviour
         currentWeaponFunc.Init(gunData.bulletData);
         currentWeapon.transform.localPosition = Vector3.zero;
         currentWeapon.transform.localRotation = Quaternion.identity;
-        currentAmmo = gunData.magazineCapacity;
-        magazineCapacity = gunData.magazineCapacity;
+        magazineCapacity = Mathf.CeilToInt(gunData.magazineCapacity * (1 + (playerController.MagazineCapacityLevel * 0.075f)));
+        currentAmmo = magazineCapacity;
         OnAmmoChange?.Invoke(currentAmmo, magazineCapacity);
         canShoot = true;
     }

@@ -21,6 +21,15 @@ public class UIController : MonoBehaviour
         ammoUI.UpdateAmmoUI(weaponController.CurrentAmmo, weaponController.MagazineCapacity);
         dayUI.UpdateDayUI(dayController.currentDay);
     }
+
+    void OnDisable()
+    {
+        DayController.OnDayEnded -= UpgradeMode;
+        DayController.OnGameEnd -= dayEndedUI.UpdateDayEndedUI;
+        GameController.OnGameStart -= GameMode;
+        weaponController.OnAmmoChange -= ammoUI.UpdateAmmoUI;
+        dayController.OnDayChanged -= dayUI.UpdateDayUI;
+    }
     void GameMode()
     {
         UpgradeUI.SetActive(false);
@@ -33,6 +42,6 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

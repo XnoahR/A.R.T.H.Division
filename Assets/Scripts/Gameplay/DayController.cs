@@ -18,6 +18,7 @@ public class DayController : MonoBehaviour
     [SerializeField] private int currentDayEnemies;
     [SerializeField] private int maxDay => spawnerList.Count;
     public bool hasNextDay => currentDay + 1 <= maxDay;
+    bool isEnding;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class DayController : MonoBehaviour
     }
     public void StartDay()
     {
+        isEnding = false;
         StartCoroutine(StartCount());
     }
 
@@ -59,7 +61,7 @@ public class DayController : MonoBehaviour
         {
             // UI P1
             OnDayEnded?.Invoke();
-            
+
             return;
         }
         Debug.Log("Game End");
@@ -84,9 +86,13 @@ public class DayController : MonoBehaviour
 
     private IEnumerator EndCount()
     {
+        if(isEnding) yield break;
+        isEnding = true;
         yield return new WaitForSeconds(3);
-        
-        OnGameEnd?.Invoke(playerEconomy.AddMoney(10),playerEconomy.GetMoney());
+        int income = playerEconomy.AddMoney(10);
+        int total = playerEconomy.GetMoney();
+
+        OnGameEnd?.Invoke(income, total);
         gameController.SetState(GAME_STATE.DAYEND);
         EndDay();
     }

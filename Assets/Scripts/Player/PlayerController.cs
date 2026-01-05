@@ -17,14 +17,21 @@ public class PlayerController : MonoBehaviour
     public bool canPlay = true;
     public event Action<STAT_TYPE, int> OnStatChanged;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         GameController.OnGamePaused += ChangePlayState;
-        FireRateLevel = 1;
-        MagazineCapacityLevel = 1;
+    }
+    void OnDisable()
+    {
+        GameController.OnGamePaused += ChangePlayState;
+    }
+
+    void Awake()
+    {
+        FireRateLevel = 10; 
+        MagazineCapacityLevel = 20;
         AttackLevel = 1;
         ReloadSpeedLevel = 1;
-
     }
 
 
