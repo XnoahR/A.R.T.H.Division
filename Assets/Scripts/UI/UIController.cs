@@ -6,6 +6,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] WeaponController weaponController;
     [SerializeField] DayController dayController;
+    [SerializeField] DayEndedUI dayEndedUI;
     [SerializeField] GameObject UpgradeUI;
     [SerializeField] AmmoUI ammoUI;
     [SerializeField] DayUI dayUI;
@@ -13,6 +14,7 @@ public class UIController : MonoBehaviour
     void OnEnable()
     {
         DayController.OnDayEnded += UpgradeMode;
+        DayController.OnGameEnd += dayEndedUI.UpdateDayEndedUI;
         GameController.OnGameStart += GameMode;
         weaponController.OnAmmoChange += ammoUI.UpdateAmmoUI;
         dayController.OnDayChanged += dayUI.UpdateDayUI;

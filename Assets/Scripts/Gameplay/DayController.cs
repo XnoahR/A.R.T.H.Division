@@ -5,11 +5,14 @@ using UnityEngine;
 using Core.Game;
 public class DayController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private List<SpawnerData> spawnerList;
     [SerializeField] private EnemySpawnerController enemySpawnerController;
     [SerializeField] private GameController gameController;
+    [SerializeField] private PlayerEconomy playerEconomy;
     public int currentDay;
     public event Action<int> OnDayChanged;
+    public static event Action<int, int> OnGameEnd;
     public static event Action OnDayEnded;
     [SerializeField] private int enemiesLeft;
     [SerializeField] private int currentDayEnemies;
@@ -82,6 +85,8 @@ public class DayController : MonoBehaviour
     private IEnumerator EndCount()
     {
         yield return new WaitForSeconds(3);
+        
+        OnGameEnd?.Invoke(playerEconomy.AddMoney(10),playerEconomy.GetMoney());
         gameController.SetState(GAME_STATE.DAYEND);
         EndDay();
     }

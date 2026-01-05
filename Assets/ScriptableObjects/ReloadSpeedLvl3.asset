@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98cace041b957eb4a85f4152c6c2ba33, type: 3}
   m_Name: ReloadSpeedLvl3
   m_EditorClassIdentifier: 
-  upgradeName: Reload Speed +2
-  description: Adding Reload Speed level to 2
+  upgradeName: Reload Speed +3
+  description: Adding Reload Speed level to 3
   icon: {fileID: 0}
   category: 0
   type: 3
-  cost: 4
+  cost: 6
   attackValue: 0
   magazineCapacityValue: 0
-  reloadSpeedValue: 2
+  reloadSpeedValue: 3
   fireRateValue: 0

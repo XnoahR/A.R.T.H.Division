@@ -6,22 +6,20 @@ public class PlayerEconomy : MonoBehaviour
 {
     public int money;
     // Start is called before the first frame update
-    void OnEnable()
-    {
-        DayController.OnDayEnded += AddMoney;
-    }
-    void OnDisable()
-    {
-        DayController.OnDayEnded -= AddMoney;
-    }
+    
     
 
-    void AddMoney()
+    public int AddMoney(int amount)
     {
-        money += 100;
+        money += amount;
         Debug.Log("Money Added");
+        return amount;
     }
     
+    public int GetMoney()
+    {
+        return money;
+    }
     public void SpendMoney(int amount)
     {
         if(money < amount)
