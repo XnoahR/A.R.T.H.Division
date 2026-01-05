@@ -89,7 +89,7 @@ public class DayController : MonoBehaviour
         if(isEnding) yield break;
         isEnding = true;
         yield return new WaitForSeconds(3);
-        int income = playerEconomy.AddMoney(10);
+        int income = playerEconomy.AddMoney(50);
         int total = playerEconomy.GetMoney();
 
         OnGameEnd?.Invoke(income, total);

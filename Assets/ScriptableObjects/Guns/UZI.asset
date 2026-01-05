@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57107c578380358419a29af761dc0a4a, type: 3}
-  m_Name: Shotgun
+  m_Name: UZI
   m_EditorClassIdentifier: 
-  GunName: Shotgun
-  gunType: 2
-  shotMode: 2
-  fireRate: 4
-  damage: 3
-  magazineCapacity: 8
+  GunName: UZI
+  gunType: 1
+  shotMode: 0
+  fireRate: 8
+  damage: 5
+  magazineCapacity: 15
   punchback: 1
   maxAmmo: 0
-  reloadTime: 1
-  bulletData: {fileID: 11400000, guid: c163497f2c542ef47900f05f43476878, type: 2}
-  WeaponGO: {fileID: 3678610850089243771, guid: 03b84d971810d6e4c9db6d2c2113eabe, type: 3}
+  reloadTime: 1.5
+  bulletData: {fileID: 11400000, guid: acd1f21c45c14c748baf6b18218a653e, type: 2}
+  WeaponGO: {fileID: 3678610850089243771, guid: 090624df05bf0564e854df23462ff680, type: 3}

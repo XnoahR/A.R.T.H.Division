@@ -51,7 +51,7 @@ public class WeaponController : MonoBehaviour
     {
         GameController.OnGameStart += Init;
     }
-    
+
     public void Init()
     {
         SetupWeapon(gunData);
@@ -72,7 +72,7 @@ public class WeaponController : MonoBehaviour
                 {
                     currentWeaponFunc.Fire(CalculateDamage());
                     DecreaseAmmo();
-                    fireDelay = 1 / (gunData.fireRate * (1 + (playerController.FireRateLevel*0.1f)));
+                    fireDelay = 1 / (gunData.fireRate * (1 + (playerController.FireRateLevel * 0.1f)));
                     Debug.Log(fireDelay);
                 }
             }
@@ -120,7 +120,7 @@ public class WeaponController : MonoBehaviour
 
     public int CalculateDamage()
     {
-        int damage =  Mathf.FloorToInt(
+        int damage = Mathf.FloorToInt(
             (gunData.damage + gunData.bulletData.additionalDamage)
             * (1 + (playerController.AttackLevel * 0.1f))
         );
@@ -132,7 +132,7 @@ public class WeaponController : MonoBehaviour
     IEnumerator Reload()
     {
         isReloading = true;
-        yield return new WaitForSeconds(gunData.reloadTime / (1 + (playerController.ReloadSpeedLevel*0.075f)));
+        yield return new WaitForSeconds(gunData.reloadTime / (1 + (playerController.ReloadSpeedLevel * 0.075f)));
         currentAmmo = magazineCapacity;
         OnAmmoChange?.Invoke(currentAmmo, magazineCapacity);
         isReloading = false;
@@ -146,7 +146,7 @@ public class WeaponController : MonoBehaviour
     }
     void SetupWeapon(GunData gunData)
     {
-        currentWeapon = Instantiate(gunData.WeaponGO, weaponContainer);
+        if (currentWeapon == null) currentWeapon = Instantiate(gunData.WeaponGO, weaponContainer);
         currentWeaponFunc = currentWeapon.GetComponent<Weapon>();
         currentWeaponFunc.Init(gunData.bulletData);
         currentWeapon.transform.localPosition = Vector3.zero;
@@ -155,5 +155,11 @@ public class WeaponController : MonoBehaviour
         currentAmmo = magazineCapacity;
         OnAmmoChange?.Invoke(currentAmmo, magazineCapacity);
         canShoot = true;
+    }
+
+    public void ChangeWeapon(GunData gunData)
+    {
+        Destroy(weaponContainer.GetChild(0).gameObject);
+        this.gunData = gunData;
     }
 }

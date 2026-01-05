@@ -15,7 +15,7 @@ public class UpgradeController : MonoBehaviour
     [SerializeField] GameController gameController;
 
     [Header("Settings")]
-    [SerializeField] int refreshCost = 25;
+    [SerializeField] int refreshCost = 2;
     [SerializeField] StatsUI statsUI;
 
     private List<UpgradeData> currentChoices = new();
@@ -49,6 +49,27 @@ public class UpgradeController : MonoBehaviour
         data.Apply(player);
         OnUpgraded?.Invoke();
         StartCoroutine(DayStart());
+    }
+
+    public void NoBuy()
+    {
+        OnUpgraded?.Invoke();
+        StartCoroutine(DayStart());
+    }
+
+    public void Refresh()
+    {
+        var economy = player.GetComponent<PlayerEconomy>();
+
+        if (economy.money < refreshCost)
+        {
+            Debug.Log("No money for refresh");
+            Debug.Log($"Money: {economy.money}, refresh cost: {refreshCost}");
+            return;
+        }
+
+        economy.money -= refreshCost;
+        Generate();
     }
 
     IEnumerator DayStart()
