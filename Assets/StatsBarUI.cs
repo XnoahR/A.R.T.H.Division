@@ -9,7 +9,7 @@ public class StatBarUI : MonoBehaviour
     [SerializeField] private Transform barContainer;
 
     [SerializeField] private Color activeColor = new Color(1f, 0.5f, 0f);
-    [SerializeField] private Color inactiveColor = Color.white;
+    [SerializeField] private Color inactiveColor = new Color(0.21f, 0.2f, 0.18f);
 
     [SerializeField] private RawImage[] bars;
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_M4
   m_EditorClassIdentifier: 
   upgradeName: M4
-  description: 
+  description: M4
   icon: {fileID: 0}
   category: 1
   type: 0

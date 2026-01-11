@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b17223e12b24340867053c9546ae03, type: 3}
   m_Name: Weapon_Pistol
   m_EditorClassIdentifier: 
-  upgradeName: Shotgun
-  description: 
+  upgradeName: Pistol
+  description: Pistol
   icon: {fileID: 0}
   category: 1
   type: 0
