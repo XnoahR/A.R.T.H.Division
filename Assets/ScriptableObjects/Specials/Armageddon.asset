@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   specialName: Armageddon
-  specialObj: {fileID: 0}
+  specialCooldown: 15
+  specialObj: {fileID: 4404110334396937392, guid: f70b8ea45f1eed64998fb9c32a173870, type: 3}
+  needOffset: 1
+  spawnOffset: {x: 5, y: 0, z: 0}

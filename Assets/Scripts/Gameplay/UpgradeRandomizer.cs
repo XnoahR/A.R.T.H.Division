@@ -18,7 +18,7 @@ public static class UpgradeRandomizer
             {
                 break;
             }
-            if (upgrade.category == UPGRADE_CATEGORY.STATS)
+            if (upgrade.category == UPGRADE_CATEGORY.STATS || upgrade.category == UPGRADE_CATEGORY.WEAPON)
             {
                 if (usedStat.Contains(upgrade.upgradeName)) continue;
 
@@ -27,7 +27,6 @@ public static class UpgradeRandomizer
             else
             {
                 if (usedCategory.Contains(upgrade.category)) continue;
-
                 usedCategory.Add(upgrade.category);
 
             }

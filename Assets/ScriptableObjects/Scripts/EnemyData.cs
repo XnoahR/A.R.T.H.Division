@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum TARGET
+{
+     PLAYER, //2 HP?
+     OBJECTIVE
+}
+
 [CreateAssetMenu(menuName = "EnemyData")]
 public class EnemyData : ScriptableObject
 {
