@@ -15,11 +15,12 @@ MonoBehaviour:
   GunName: UZI
   gunType: 1
   shotMode: 0
-  fireRate: 8
+  fireRate: 9
   damage: 5
   magazineCapacity: 15
   punchback: 1
   maxAmmo: 0
   reloadTime: 1.5
+  recoil: 14
   bulletData: {fileID: 11400000, guid: acd1f21c45c14c748baf6b18218a653e, type: 2}
   WeaponGO: {fileID: 3678610850089243771, guid: 090624df05bf0564e854df23462ff680, type: 3}

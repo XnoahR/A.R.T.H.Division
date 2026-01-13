@@ -21,7 +21,7 @@ public class Shotgun : Weapon
     {
     }
 
-    public override void Fire(int damage)
+    public override void Fire(int damage, float recoilOffset)
     {
         for (int i = 0; i < pelletCount; i++)
         {

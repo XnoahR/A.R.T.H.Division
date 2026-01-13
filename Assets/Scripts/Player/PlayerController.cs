@@ -4,7 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using Core.Game;
 using System;
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
     [SerializeField] float speed;
@@ -12,10 +12,13 @@ public class PlayerController : MonoBehaviour
     public int MagazineCapacityLevel;
     public int AttackLevel;
     public int ReloadSpeedLevel;
-
+    public int health;
+    private bool isInvincible;
+    private int MAX_HEALTH = 5;
     public bool isRight = true;
     public bool canPlay = true;
     public event Action<STAT_TYPE, int> OnStatChanged;
+    [SerializeField] Transform spawnPoint;
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -28,14 +31,24 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        FireRateLevel = 10; 
-        MagazineCapacityLevel = 20;
-        AttackLevel = 1;
-        ReloadSpeedLevel = 1;
+        FireRateLevel = 10;
+        MagazineCapacityLevel = 10;
+        AttackLevel = 10;
+        ReloadSpeedLevel = 10;
+        isInvincible = false;
+        SetMaxHealth();
+        SetPositionSpawn();
     }
 
+    public void SetMaxHealth()
+    {
+        health = MAX_HEALTH;
+    }
+    public void SetPositionSpawn()
+    {
+        transform.position = spawnPoint.position;
+    }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         //movement
@@ -90,6 +103,20 @@ public class PlayerController : MonoBehaviour
         Debug.Log(canPlay);
     }
 
+    public void TakeDamage(int damage)
+    {
+        if (isInvincible) return;
+        Debug.Log("Damaged");
+        health -= damage;
+        StartCoroutine(InvisibilityCooldown());
+
+    }
+    IEnumerator InvisibilityCooldown()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(5);
+        isInvincible = false;
+    }
     public void Flip(Transform weaponPivot)
     {
         isRight = !isRight;

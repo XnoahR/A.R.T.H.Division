@@ -15,9 +15,9 @@ public class GroundEnemy : Enemy
 
     IEnumerator spawnAttackArea()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         attackArea.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.6f);
         attackArea.gameObject.SetActive(false);
     }
 }

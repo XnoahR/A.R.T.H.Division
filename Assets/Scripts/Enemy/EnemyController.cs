@@ -6,10 +6,12 @@ using System;
 public class EnemyController : MonoBehaviour, IDamageable
 {
      public static event Action OnEnemyDead;
+     public event Action<int> onEnemyDamaged;
     public Enemy enemyScript;
     public int health;
     public int speed;
     bool isDie = false;
+    bool isAttacking = false;
     // [SerializeField] private BoxCollider2D enemyHitCollider;
     [SerializeField] private BoxCollider2D enemyTriggerObjective;
     [SerializeField] public bool isTargetDetected = false;
@@ -28,7 +30,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     void FixedUpdate()
     {
-        if (!isTargetDetected)
+        if (!isTargetDetected && !isAttacking)
         {
             enemyScript.Move();
         }
@@ -38,6 +40,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
+        onEnemyDamaged?.Invoke(health);
         if (health <= 0)
         {
             if(isDie) return;
@@ -62,8 +65,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         while (isTargetDetected == true)
         {
+            isAttacking = true;
             yield return new WaitForSeconds(enemyScript.enemyData.attackSpeed);
             enemyScript.Attack(attackTarget, enemyScript.enemyData.damage);
+            isAttacking = false;
         }
     }
 

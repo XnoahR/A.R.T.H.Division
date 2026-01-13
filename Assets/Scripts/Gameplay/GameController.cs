@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
     public GAME_STATE currentGameState;
     private GAME_STATE previousGameState;
     private DayController dayController;
+    [SerializeField] PlayerController playerController;
     public static event Action<GAME_STATE> OnGamePaused;
     public static event Action OnGameStart;
     public static event Action OnGameUpgrade;
@@ -56,16 +57,14 @@ public class GameController : MonoBehaviour
         switch (state)
         {
             case GAME_STATE.INIT:
-                Debug.Log(state);
                 break;
             case GAME_STATE.DAYSTART:
-                Debug.Log(state);
+                playerController.SetPositionSpawn();
                 OnGameStart?.Invoke();
                 dayController.StartDay();
                 OnGamePaused?.Invoke(state);
                 break;
             case GAME_STATE.DAYEND:
-                Debug.Log(state);
                 OnGamePaused?.Invoke(state);
                 break;
             case GAME_STATE.PAUSE:

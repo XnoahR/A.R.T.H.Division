@@ -17,6 +17,7 @@ public class GunData : ScriptableObject
     public int punchback;
     public int maxAmmo;
     public float reloadTime;
+    public float recoil;
   
 
     [Header("References")]

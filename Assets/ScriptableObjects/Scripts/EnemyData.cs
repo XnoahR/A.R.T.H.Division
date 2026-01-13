@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum TARGET
+public enum TARGET
 {
      PLAYER, //2 HP?
      OBJECTIVE
@@ -18,5 +18,6 @@ public class EnemyData : ScriptableObject
      public int damage;
      public int attackSpeed;
      public bool isFly;
+     public TARGET attackTarget;
 
 }

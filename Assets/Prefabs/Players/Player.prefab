@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2764179472024094339}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
   - {x: 0.2800002, y: 2.3899999, z: 0}
   m_ShapePathHash: 794222597
   m_Mesh: {fileID: 0}
-  m_InstanceId: 56938
+  m_InstanceId: 53100
   m_LocalBounds:
     m_Center: {x: -0.028310299, y: 0.7880368, z: 0}
     m_Extent: {x: 0.5, y: 1.601963, z: 0}
@@ -600,7 +600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4825036578775362877
 Transform:
   m_ObjectHideFlags: 0
@@ -1358,7 +1358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8321690536065590730
 Transform:
   m_ObjectHideFlags: 0

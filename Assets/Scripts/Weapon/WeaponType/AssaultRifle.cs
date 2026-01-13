@@ -23,9 +23,12 @@ public class AssaultRifle : Weapon
 
     
 
-    public override void Fire(int damage)
+    public override void Fire(int damage, float recoilOffset)
     {
-        GameObject bulletGO = Instantiate(bulletData.BulletGO, firePoint.position, firePoint.rotation);
+        float spread = Random.Range(-recoilOffset, recoilOffset);
+        Quaternion spreadRotation = firePoint.rotation * Quaternion.Euler(0f, 0f, spread);
+        Debug.Log(spreadRotation);
+        GameObject bulletGO = Instantiate(bulletData.BulletGO, firePoint.position, spreadRotation);
         bulletGO.GetComponent<BulletController>().Init(bulletData, damage);
         Destroy(bulletGO, 4);
         StartCoroutine(MuzzleFlash());

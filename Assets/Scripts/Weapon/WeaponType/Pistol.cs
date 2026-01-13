@@ -19,7 +19,7 @@ public class Pistol : Weapon
     {
     }
 
-    public override void Fire(int damage)
+    public override void Fire(int damage, float recoilOffset)
     {
         GameObject bulletGO = Instantiate(bulletData.BulletGO, firePoint.position, firePoint.rotation);
         bulletGO.GetComponent<BulletController>().Init(bulletData, damage);

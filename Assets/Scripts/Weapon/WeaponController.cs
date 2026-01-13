@@ -25,6 +25,8 @@ public class WeaponController : MonoBehaviour
     public int CurrentAmmo => currentAmmo;
     public int MagazineCapacity => magazineCapacity;
     public Vector2 aimDirection { get; private set; }
+    private bool isFocus;
+    private float recoilOffset;
 
 
 
@@ -60,6 +62,7 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isFocus = Input.GetMouseButton(1);
         if (playerController.canPlay)
         {
             if (InputMode())
@@ -70,13 +73,14 @@ public class WeaponController : MonoBehaviour
                 }
                 if (fireDelay <= 0 && canShoot && !isReloading)
                 {
-                    currentWeaponFunc.Fire(CalculateDamage());
+                    float spread = recoilOffset;
+                    if (isFocus) spread *= 0.4f;
+                    currentWeaponFunc.Fire(CalculateDamage(), spread);
                     DecreaseAmmo();
                     fireDelay = 1 / (gunData.fireRate * (1 + (playerController.FireRateLevel * 0.1f)));
                     Debug.Log(fireDelay);
                 }
             }
-
             if (Input.GetKeyDown(KeyCode.R) && currentAmmo < magazineCapacity)
             {
                 StartCoroutine(Reload());
@@ -153,6 +157,7 @@ public class WeaponController : MonoBehaviour
         currentWeapon.transform.localRotation = Quaternion.identity;
         magazineCapacity = Mathf.CeilToInt(gunData.magazineCapacity * (1 + (playerController.MagazineCapacityLevel * 0.075f)));
         currentAmmo = magazineCapacity;
+        recoilOffset = gunData.recoil;
         OnAmmoChange?.Invoke(currentAmmo, magazineCapacity);
         canShoot = true;
     }

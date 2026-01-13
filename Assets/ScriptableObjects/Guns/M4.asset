@@ -21,5 +21,6 @@ MonoBehaviour:
   punchback: 1
   maxAmmo: 0
   reloadTime: 1.5
+  recoil: 10
   bulletData: {fileID: 11400000, guid: a2d3a4031c7b50340bc414f5d9ccbce9, type: 2}
   WeaponGO: {fileID: 3678610850089243771, guid: e53359bb5cd34884f9405fb73eb9e4d3, type: 3}
