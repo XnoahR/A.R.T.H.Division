@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b17223e12b24340867053c9546ae03, type: 3}
+  m_Name: Weapon_Vector
+  m_EditorClassIdentifier: 
+  upgradeName: Vector
+  description: Kriss Vector
+  icon: {fileID: 267574214, guid: 6c903663318a5124ab112378ff823bdb, type: 3}
+  category: 1
+  type: 0
+  cost: 10
+  gunData: {fileID: 11400000, guid: a74d3f775a1467c47838bfcad24f7653, type: 2}

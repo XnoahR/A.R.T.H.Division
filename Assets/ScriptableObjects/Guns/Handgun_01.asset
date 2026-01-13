@@ -15,11 +15,14 @@ MonoBehaviour:
   GunName: Handgun_01
   gunType: 0
   shotMode: 0
+  durability: 0
+  isPermanent: 1
   fireRate: 8
   damage: 10
   magazineCapacity: 18
   punchback: 1
   maxAmmo: 0
   reloadTime: 0.7
+  recoil: 0
   bulletData: {fileID: 11400000, guid: acd1f21c45c14c748baf6b18218a653e, type: 2}
   WeaponGO: {fileID: 3678610850089243771, guid: 4c3538147d106b044827645111cf81db, type: 3}

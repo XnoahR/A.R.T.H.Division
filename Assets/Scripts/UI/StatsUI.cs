@@ -35,7 +35,6 @@ public class StatsUI : MonoBehaviour
         player.OnStatChanged -= UpdateStat;
     }
 
-    // INI YANG KAMU TANYA "hah?"
     void UpdateStat(STAT_TYPE type, int level)
     {
         UpdateBar(type, level);

@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57107c578380358419a29af761dc0a4a, type: 3}
-  m_Name: Shotgun
+  m_Name: M1
   m_EditorClassIdentifier: 
-  GunName: Shotgun
-  gunType: 2
+  GunName: M1
+  gunType: 3
   shotMode: 2
-  fireRate: 4
-  damage: 3
-  magazineCapacity: 8
+  durability: 7
+  isPermanent: 0
+  fireRate: 1
+  damage: 25
+  magazineCapacity: 5
   punchback: 1
   maxAmmo: 0
   reloadTime: 1
-  bulletData: {fileID: 11400000, guid: c163497f2c542ef47900f05f43476878, type: 2}
-  WeaponGO: {fileID: 3678610850089243771, guid: 03b84d971810d6e4c9db6d2c2113eabe, type: 3}
+  recoil: 0
+  bulletData: {fileID: 11400000, guid: a2d3a4031c7b50340bc414f5d9ccbce9, type: 2}
+  WeaponGO: {fileID: 4856311967695453433, guid: d7738c58902c83a4099092cf18f1f4e6, type: 3}

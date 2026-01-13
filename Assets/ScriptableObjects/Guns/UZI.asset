@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57107c578380358419a29af761dc0a4a, type: 3}
   m_Name: UZI
   m_EditorClassIdentifier: 
-  GunName: UZI
+  GunName: P-1
   gunType: 1
-  shotMode: 0
-  fireRate: 9
+  shotMode: 2
+  durability: 0
+  isPermanent: 1
+  fireRate: 6
   damage: 5
   magazineCapacity: 15
   punchback: 1

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: O-1NK
   m_EditorClassIdentifier: 
   enemyName: O-1NK
-  health: 600
+  health: 150
   MAX_HEALTH: 75
   speed: 7
-  damage: 5
+  damage: 2
   attackSpeed: 1
   isFly: 0
+  attackTarget: 0

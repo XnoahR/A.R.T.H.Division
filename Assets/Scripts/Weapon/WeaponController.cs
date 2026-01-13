@@ -11,10 +11,13 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform armPivot;
     [SerializeField] private GameObject currentWeapon;
     [SerializeField] public GunData gunData;
+    [SerializeField] public GunData pistolData;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Weapon currentWeaponFunc;
 
     public event Action<int, int> OnAmmoChange;
+    public static event Action<GunData> onWeaponChange;
+    public static event Action<bool, int> OnDurabilityChange;
 
     [Header("Utilities")]
     [SerializeField] int currentAmmo;
@@ -22,6 +25,12 @@ public class WeaponController : MonoBehaviour
     [SerializeField] bool canShoot;
     [SerializeField] bool isReloading;
     [SerializeField] private float fireDelay;
+    private bool hasInitializedDurability = false;
+
+    [SerializeField] private bool isPermanent;
+    public bool IsPermanent => isPermanent;
+    [SerializeField] private int currentWeaponDurability;
+    public int CurrentWeaponDurability => currentWeaponDurability;
     public int CurrentAmmo => currentAmmo;
     public int MagazineCapacity => magazineCapacity;
     public Vector2 aimDirection { get; private set; }
@@ -36,6 +45,7 @@ public class WeaponController : MonoBehaviour
     void Awake()
     {
         playerController = GetComponent<PlayerController>();
+        gunData = pistolData;
         if (gunData == null)
         {
             Debug.LogError("GunData is NULL!", this);
@@ -52,11 +62,25 @@ public class WeaponController : MonoBehaviour
     void OnEnable()
     {
         GameController.OnGameStart += Init;
+        DayController.OnDayEnded += decreaseDurability;
+    }
+    void OnDisable()
+    {
+        GameController.OnGameStart -= Init;
+        DayController.OnDayEnded -= decreaseDurability;
     }
 
     public void Init()
     {
         SetupWeapon(gunData);
+        Debug.Log($"Init weapon: {gunData.name}, permanent: {gunData.isPermanent}");
+
+        if (!hasInitializedDurability)
+        {
+            currentWeaponDurability = gunData.durability;
+            hasInitializedDurability = true;
+            OnDurabilityChange?.Invoke(isPermanent, currentWeaponDurability);
+        }
     }
 
     // Update is called once per frame
@@ -150,21 +174,58 @@ public class WeaponController : MonoBehaviour
     }
     void SetupWeapon(GunData gunData)
     {
-        if (currentWeapon == null) currentWeapon = Instantiate(gunData.WeaponGO, weaponContainer);
+        if (currentWeapon != null)
+            Destroy(currentWeapon);
+
+        currentWeapon = Instantiate(gunData.WeaponGO, weaponContainer);
+
         currentWeaponFunc = currentWeapon.GetComponent<Weapon>();
         currentWeaponFunc.Init(gunData.bulletData);
+
         currentWeapon.transform.localPosition = Vector3.zero;
         currentWeapon.transform.localRotation = Quaternion.identity;
-        magazineCapacity = Mathf.CeilToInt(gunData.magazineCapacity * (1 + (playerController.MagazineCapacityLevel * 0.075f)));
+
+        magazineCapacity = Mathf.CeilToInt(
+            gunData.magazineCapacity * (1 + playerController.MagazineCapacityLevel * 0.075f)
+        );
+
         currentAmmo = magazineCapacity;
         recoilOffset = gunData.recoil;
+        isPermanent = gunData.isPermanent;
+        
+        onWeaponChange?.Invoke(gunData);
         OnAmmoChange?.Invoke(currentAmmo, magazineCapacity);
+
         canShoot = true;
     }
 
-    public void ChangeWeapon(GunData gunData)
+    public void ChangeWeapon(GunData newGunData)
     {
-        Destroy(weaponContainer.GetChild(0).gameObject);
-        this.gunData = gunData;
+        if (weaponContainer.childCount > 0)
+            Destroy(weaponContainer.GetChild(0).gameObject);
+
+        currentWeapon = null;
+        gunData = newGunData;
+
+        hasInitializedDurability = false;
+        currentWeaponDurability = gunData.durability;
+
+        SetupWeapon(gunData);
+
+        OnDurabilityChange?.Invoke(isPermanent, currentWeaponDurability);
+    }
+
+    public void decreaseDurability()
+    {
+        if (isPermanent || !hasInitializedDurability)
+            return;
+
+        currentWeaponDurability--;
+        OnDurabilityChange?.Invoke(isPermanent, currentWeaponDurability);
+
+        if (currentWeaponDurability < 0)
+        {
+            ChangeWeapon(pistolData);
+        }
     }
 }

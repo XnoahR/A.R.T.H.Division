@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57107c578380358419a29af761dc0a4a, type: 3}
-  m_Name: M4
+  m_Name: Vector
   m_EditorClassIdentifier: 
-  GunName: Assault
-  gunType: 0
+  GunName: Vector
+  gunType: 1
   shotMode: 0
-  durability: 0
+  durability: 5
   isPermanent: 0
-  fireRate: 6
-  damage: 15
-  magazineCapacity: 30
+  fireRate: 9
+  damage: 5
+  magazineCapacity: 15
   punchback: 1
   maxAmmo: 0
   reloadTime: 1.5
-  recoil: 10
-  bulletData: {fileID: 11400000, guid: a2d3a4031c7b50340bc414f5d9ccbce9, type: 2}
-  WeaponGO: {fileID: 4856311967695453433, guid: 36b529d59f610304ca49de9040dd1849, type: 3}
+  recoil: 14
+  bulletData: {fileID: 11400000, guid: acd1f21c45c14c748baf6b18218a653e, type: 2}
+  WeaponGO: {fileID: 4856311967695453433, guid: deac9a4da9d9a70458ff6ece51b4bbb1, type: 3}
