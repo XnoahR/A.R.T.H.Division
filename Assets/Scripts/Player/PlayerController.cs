@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public bool canPlay = true;
     public event Action<STAT_TYPE, int> OnStatChanged;
     [SerializeField] Transform spawnPoint;
+    public Transform abilitySpawnPoint;
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -31,10 +32,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void Awake()
     {
-        FireRateLevel = 10;
-        MagazineCapacityLevel = 10;
-        AttackLevel = 10;
-        ReloadSpeedLevel = 10;
         isInvincible = false;
         SetMaxHealth();
         SetPositionSpawn();
@@ -110,6 +107,13 @@ public class PlayerController : MonoBehaviour, IDamageable
         health -= damage;
         StartCoroutine(InvisibilityCooldown());
 
+    }
+
+    public void RegenHealth(int amount)
+    {
+        if (health >= MAX_HEALTH) return;
+        health += amount;
+        if (health > MAX_HEALTH) health = MAX_HEALTH;
     }
     IEnumerator InvisibilityCooldown()
     {

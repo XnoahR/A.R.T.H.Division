@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Core.Game;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.UI;
+using System;
 
 public class UpgradeCard : MonoBehaviour
 {
@@ -13,6 +13,8 @@ public class UpgradeCard : MonoBehaviour
     [SerializeField] TextMeshProUGUI upgradeNameText;
     [SerializeField] private Button button;
 
+    public static event Action<UpgradeData> OnCardHover;
+    public static event Action<UpgradeData> OnCardExit;
     void Awake()
     {
         button = GetComponent<Button>();
@@ -44,21 +46,16 @@ public class UpgradeCard : MonoBehaviour
 
     public void OnMouseEnter()
     {
+        if (!button.interactable) return;
         gameObject.transform.localScale = new Vector3(1.075f, 1.075f, 1.075f);
+        OnCardHover?.Invoke(upgradeData);
+
     }
     public void OnMouseExit()
     {
+        if (!button.interactable) return;
         gameObject.transform.localScale = Vector3.one;
+        OnCardHover?.Invoke(null);
     }
-    // public void Choose()
-    // {
-    //     if(player.GetComponent<PlayerEconomy>().money < upgradeData.cost)
-    //     {
-    //         Debug.Log("No money!");
-    //         return;
-    //     }
-    //     upgradeData.Apply(player);
-    //     gameController.SetState(GAME_STATE.DAYSTART);
 
-    // }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   GunName: Vector
   gunType: 1
   shotMode: 0
-  durability: 5
+  durability: 0
   isPermanent: 0
   fireRate: 9
   damage: 5
@@ -26,3 +26,4 @@ MonoBehaviour:
   recoil: 14
   bulletData: {fileID: 11400000, guid: acd1f21c45c14c748baf6b18218a653e, type: 2}
   WeaponGO: {fileID: 4856311967695453433, guid: deac9a4da9d9a70458ff6ece51b4bbb1, type: 3}
+  gunSprite: {fileID: 267574214, guid: 6c903663318a5124ab112378ff823bdb, type: 3}

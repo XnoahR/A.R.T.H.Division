@@ -39,13 +39,13 @@ public class UpgradeController : MonoBehaviour
     public void Choose(UpgradeData data)
     {
         var economy = player.GetComponent<PlayerEconomy>();
-        if (economy.money < data.cost)
+        if (economy.Money < data.cost)
         {
             Debug.Log("Not enough money");
             return;
         }
 
-        economy.money -= data.cost;
+        economy.SpendMoney(data.cost);
         data.Apply(player);
         OnUpgraded?.Invoke();
         StartCoroutine(DayStart());
@@ -61,14 +61,14 @@ public class UpgradeController : MonoBehaviour
     {
         var economy = player.GetComponent<PlayerEconomy>();
 
-        if (economy.money < refreshCost)
+        if (economy.Money < refreshCost)
         {
             Debug.Log("No money for refresh");
-            Debug.Log($"Money: {economy.money}, refresh cost: {refreshCost}");
+            Debug.Log($"Money: {economy.Money}, refresh cost: {refreshCost}");
             return;
         }
 
-        economy.money -= refreshCost;
+        economy.SpendMoney(refreshCost);
         Generate();
     }
 

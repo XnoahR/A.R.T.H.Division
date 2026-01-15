@@ -1,31 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerEconomy : MonoBehaviour
 {
-    public int money;
-    // Start is called before the first frame update
-    
-    
+    public static PlayerEconomy Instance;
 
-    public int AddMoney(int amount)
+    public static event Action<int> OnMoneyChanged;
+
+    [SerializeField] private int money;
+    public int Money => money;
+
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
+
+    public void AddMoney(int amount)
     {
         money += amount;
-        Debug.Log("Money Added");
-        return amount;
+        OnMoneyChanged?.Invoke(money);
     }
-    
-    public int GetMoney()
-    {
-        return money;
-    }
+
     public void SpendMoney(int amount)
     {
-        if(money < amount)
+        if (money < amount)
         {
             Debug.Log("Money not enough!");
+            return;
         }
+
         money -= amount;
+        OnMoneyChanged?.Invoke(money);
+    }
+
+    public void SetMoney(int amount)
+    {
+        money = amount;
+        OnMoneyChanged?.Invoke(money);
     }
 }

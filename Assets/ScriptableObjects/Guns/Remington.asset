@@ -26,3 +26,4 @@ MonoBehaviour:
   recoil: 0
   bulletData: {fileID: 11400000, guid: c163497f2c542ef47900f05f43476878, type: 2}
   WeaponGO: {fileID: 4856311967695453433, guid: ba1d47ae0d74414498a990866e5e4572, type: 3}
+  gunSprite: {fileID: -634634495, guid: 6c903663318a5124ab112378ff823bdb, type: 3}

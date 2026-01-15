@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Armageddon : SpecialBase
+public class Armageddon : AbilityBase
 {
     [SerializeField] GameObject boomPS;
     [SerializeField] BoxCollider2D col;
@@ -25,7 +25,7 @@ public class Armageddon : SpecialBase
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public override void Play()
+    public override void Apply(PlayerController playerController)
     {
          StartCoroutine(Init());
     }

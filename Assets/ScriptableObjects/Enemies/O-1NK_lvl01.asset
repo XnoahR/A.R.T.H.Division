@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef46d6a8665ce7342befab8584d37191, type: 3}
+  m_Name: O-1NK_lvl01
+  m_EditorClassIdentifier: 
+  enemyName: O-1NK
+  health: 50
+  MAX_HEALTH: 75
+  speed: 7
+  damage: 1
+  attackSpeed: 1
+  isFly: 0
+  attackTarget: 0

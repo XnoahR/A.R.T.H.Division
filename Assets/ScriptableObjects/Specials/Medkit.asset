@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef46d6a8665ce7342befab8584d37191, type: 3}
-  m_Name: O-1NK
+  m_Script: {fileID: 11500000, guid: 0115bdd572cd3d44d8e81a916c629f04, type: 3}
+  m_Name: Medkit
   m_EditorClassIdentifier: 
-  enemyName: O-1NK
-  health: 150
-  MAX_HEALTH: 75
-  speed: 7
-  damage: 2
-  attackSpeed: 1
-  isFly: 0
-  attackTarget: 0
+  abilityName: 
+  abilityCooldown: 0
+  selfAbilityObj: {fileID: 0}

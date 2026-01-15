@@ -11,6 +11,7 @@ public class DayController : MonoBehaviour
     [SerializeField] private GameController gameController;
     [SerializeField] private PlayerEconomy playerEconomy;
     public int currentDay;
+    int income = 50;
     public event Action<int> OnDayChanged;
     public static event Action<int, int> OnGameEnd;
     public static event Action OnDayEnded;
@@ -89,8 +90,8 @@ public class DayController : MonoBehaviour
         if(isEnding) yield break;
         isEnding = true;
         yield return new WaitForSeconds(3);
-        int income = playerEconomy.AddMoney(50);
-        int total = playerEconomy.GetMoney();
+        playerEconomy.AddMoney(income);
+        int total = playerEconomy.Money;
 
         OnGameEnd?.Invoke(income, total);
         gameController.SetState(GAME_STATE.DAYEND);
