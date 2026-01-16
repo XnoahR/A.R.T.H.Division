@@ -4,6 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using Core.Game;
 using System;
+
 public class PlayerController : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
@@ -20,6 +21,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     public event Action<STAT_TYPE, int> OnStatChanged;
     [SerializeField] Transform spawnPoint;
     public Transform abilitySpawnPoint;
+    private float facing;
+    private float facingDirection;
+    private float inputX;
+    [SerializeField] Animator animator;
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -61,6 +66,17 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void Update()
     {
+        inputX = Input.GetAxisRaw("Horizontal");
+
+        // arah hadap player (bukan input)
+        facing = isRight ? 1f : -1f;
+
+        // arah relatif (INI KUNCI)
+        facingDirection = inputX * facing;
+
+        // animator
+        animator.SetFloat("Speed", Mathf.Abs(inputX));
+        animator.SetFloat("Direction", facingDirection);
         if (Input.GetKeyDown(KeyCode.CapsLock))
         {
             canPlay = !canPlay;
