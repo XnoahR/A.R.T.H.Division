@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0115bdd572cd3d44d8e81a916c629f04, type: 3}
   m_Name: Medkit
   m_EditorClassIdentifier: 
-  abilityName: 
-  abilityCooldown: 0
-  selfAbilityObj: {fileID: 0}
+  abilityName: Medkit
+  abilityCooldown: 15
+  selfAbilityObj: {fileID: 5572826264675713353, guid: f7df7c58d1cb7f54fba5245abfa08429, type: 3}

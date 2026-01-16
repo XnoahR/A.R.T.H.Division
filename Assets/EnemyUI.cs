@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Microlight.MicroBar;
 
 public class EnemyUI : MonoBehaviour
 {
     public Image enemyHealthBar;
     public Image enemyHealthBarFill;
+    [SerializeField] MicroBar healthBar;
     private EnemyController enemyController;
     private bool isToggled;
     private int max_health;
@@ -17,12 +19,19 @@ public class EnemyUI : MonoBehaviour
         enemyHealthBar.gameObject.SetActive(false);
         enemyHealthBarFill.gameObject.SetActive(false);
         max_health = enemyController.health;
+        healthBar.Initialize(max_health);
     }
     private void ShowEnemyHealthBar()
     {
         isToggled = true;
-        enemyHealthBar.gameObject.SetActive(true);
-        enemyHealthBarFill.gameObject.SetActive(true);
+        // enemyHealthBar.gameObject.SetActive(true);
+        // enemyHealthBarFill.gameObject.SetActive(true);
+    }
+
+    void Start()
+    {
+        healthBar.Initialize(max_health);
+
     }
     void OnEnable()
     {
@@ -36,7 +45,7 @@ public class EnemyUI : MonoBehaviour
 
     void setHealth(int health)
     {
-        if (!isToggled) ShowEnemyHealthBar();
-        enemyHealthBarFill.fillAmount = (float)health / max_health;
+        // if (!isToggled) ShowEnemyHealthBar();
+        healthBar.UpdateBar(health);
     }
 }
