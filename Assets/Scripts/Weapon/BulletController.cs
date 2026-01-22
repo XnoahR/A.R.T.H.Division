@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-   
+
     [SerializeField] private BulletData data;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private int damage;
+    [SerializeField] private float knockback;
     [SerializeField] private GameObject bulletHitEffect;
     [SerializeField] private GameObject hitSound;
     // Start is called before the first frame update
-    public void Init(BulletData bulletData, int damage)
+    public void Init(BulletData bulletData, int damage, float knockback)
     {
         data = bulletData;
-        rb.velocity = transform.right*data.bulletSpeed;
+        rb.velocity = transform.right * data.bulletSpeed;
         this.damage = damage;
+        this.knockback = knockback;
     }
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D> ();
+        rb = GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
 
@@ -27,20 +29,24 @@ public class BulletController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            IDamageable damageable = collision.GetComponent<IDamageable>();
-            if (damageable != null)
+            collision.GetComponent<IDamageable>()?.TakeDamage(damage);
+            if (collision.TryGetComponent<Iknockable>(out var kb))
             {
-                damageable.TakeDamage(damage);
-                Instantiate(bulletHitEffect, transform.position, transform.rotation);
-                GameObject hitSoundGO = Instantiate(hitSound, transform.position, transform.rotation);
-                Destroy(hitSoundGO, 1);
-                Destroy(gameObject);
+                float dirX = 1f;
+                Vector2 dir = new Vector2(dirX, 0f);
+
+                kb.ApplyKnockback(dir, knockback);
             }
-        }
-        else{
-        Instantiate(bulletHitEffect, transform.position, transform.rotation);
-        Destroy(gameObject);
+            SpawnEffect();
+            Destroy(gameObject);
         }
     }
-    
+
+
+    void SpawnEffect()
+    {
+        Instantiate(bulletHitEffect, transform.position, transform.rotation);
+        GameObject hitSoundGO = Instantiate(hitSound, transform.position, transform.rotation);
+        Destroy(hitSoundGO, 1);
+    }
 }

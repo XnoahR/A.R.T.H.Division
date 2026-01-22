@@ -9,6 +9,7 @@ public abstract class Enemy : MonoBehaviour
     public Transform firePoint;
     public BulletData bulletData;
     public EnemyData enemyData;
+    public bool isSelfExplode;
     [SerializeField] protected Rigidbody2D rb;
     // Start is called before the first frame update
     protected void Start()
@@ -28,7 +29,13 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Move()
     {
-        transform.Translate(Vector3.left * enemyData.speed * Time.fixedDeltaTime);
+         rb.velocity = new Vector2(-enemyData.speed, rb.velocity.y);
+    }
+
+    public virtual void Stop()
+    {
+        rb.velocity = Vector2.zero;
+        Debug.Log("Stopp");
     }
     public abstract void Attack(Transform attackTarget, int damage);
 }

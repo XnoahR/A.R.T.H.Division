@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4793353539359084756}
   - component: {fileID: 8876239053708822585}
+  - component: {fileID: 2398659620898045941}
   - component: {fileID: 6630620738536672132}
   m_Layer: 11
   m_Name: ObjectiveVision
@@ -27,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 1191179356302201996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.47, y: -0.93, z: 0}
-  m_LocalScale: {x: 0.087497, y: 1.8625, z: 1}
+  m_LocalPosition: {x: -3.04, y: -0.93, z: 0}
+  m_LocalScale: {x: 1, y: 1.8625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8982071509626652035}
@@ -78,6 +79,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.7433224, y: 4.9111}
   m_EdgeRadius: 0
+--- !u!114 &2398659620898045941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191179356302201996}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9237da149ec959c4db3fcd9be8cb167b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 100
 --- !u!114 &6630620738536672132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +182,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -879179275, guid: 521e259804719ff4baaf13b0093f29b3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -471,8 +486,9 @@ GameObject:
   - component: {fileID: 5080549761276702809}
   - component: {fileID: 8063577017165515380}
   - component: {fileID: 4901578319082275427}
+  - component: {fileID: 3933188196951508229}
   m_Layer: 6
-  m_Name: B4T
+  m_Name: BoomBug
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,7 +528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 5633006825011338152}
   bulletData: {fileID: 11400000, guid: c45583aedd001f7428ea0572c69fbcc9, type: 2}
-  enemyData: {fileID: 11400000, guid: 6f19df5f3f2f2f34f8defe66e77c24d6, type: 2}
+  enemyData: {fileID: 11400000, guid: 3ffe3cabdc4bcdc43b05c6e5785ef367, type: 2}
   isSelfExplode: 0
   rb: {fileID: 0}
 --- !u!114 &5080549761276702809
@@ -606,6 +622,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3933188196951508229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7101978922531209691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b9325e67e237a8468ae7cb4601a90f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2
+  damage: 30
+  DamageMask:
+    serializedVersion: 2
+    m_Bits: 64
+  explodeVFX: {fileID: 3715826201591157232, guid: dd0838166948a6e45b2e064b56dfa78a, type: 3}
 --- !u!1 &7864363908378145995
 GameObject:
   m_ObjectHideFlags: 0

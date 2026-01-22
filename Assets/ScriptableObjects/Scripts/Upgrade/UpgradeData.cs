@@ -12,7 +12,8 @@ public enum STAT_TYPE
   ATTACK,
   FIRE_RATE,
   MAGAZINE_CAPACITY,
-  RELOAD_SPEED
+  RELOAD_SPEED,
+  PUNCHBACK
 }
 
 [CreateAssetMenu(menuName = "Upgrade/Upgrade Data")]

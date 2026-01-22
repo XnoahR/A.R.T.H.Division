@@ -6,8 +6,6 @@ using Microlight.MicroBar;
 
 public class EnemyUI : MonoBehaviour
 {
-    public Image enemyHealthBar;
-    public Image enemyHealthBarFill;
     [SerializeField] MicroBar healthBar;
     private EnemyController enemyController;
     private bool isToggled;
@@ -16,14 +14,14 @@ public class EnemyUI : MonoBehaviour
     void Awake()
     {
         enemyController = GetComponentInParent<EnemyController>();
-        enemyHealthBar.gameObject.SetActive(false);
-        enemyHealthBarFill.gameObject.SetActive(false);
+        healthBar.gameObject.SetActive(false);
         max_health = enemyController.health;
         healthBar.Initialize(max_health);
     }
     private void ShowEnemyHealthBar()
     {
         isToggled = true;
+        healthBar.gameObject.SetActive(true);
         // enemyHealthBar.gameObject.SetActive(true);
         // enemyHealthBarFill.gameObject.SetActive(true);
     }
@@ -45,7 +43,7 @@ public class EnemyUI : MonoBehaviour
 
     void setHealth(int health)
     {
-        // if (!isToggled) ShowEnemyHealthBar();
+        if (!isToggled) ShowEnemyHealthBar();
         healthBar.UpdateBar(health);
     }
 }

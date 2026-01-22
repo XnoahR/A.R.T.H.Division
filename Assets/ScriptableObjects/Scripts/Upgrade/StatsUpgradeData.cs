@@ -7,6 +7,7 @@ public class StatsUpgradeData : UpgradeData
     public int magazineCapacityValue;
     public int reloadSpeedValue;
     public int fireRateValue;
+    public int punchbackValue;
 
     public override void Apply(GameObject target)
     {

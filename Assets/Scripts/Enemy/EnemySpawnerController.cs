@@ -26,7 +26,6 @@ public class EnemySpawnerController : MonoBehaviour
     void Start()
     {
     }
-
     public void StartSpawn()
     {
         canSpawn = true;
@@ -53,11 +52,11 @@ public class EnemySpawnerController : MonoBehaviour
                 countdown -= 1f;
             }
             GameObject enemyReference = spawnerReference.enemies[spawnCounter];
-            YSpawnPos = enemyReference.GetComponent<IFlyable>() != null ? 3.5f: YSpawnPos;
+            YSpawnPos = enemyReference.GetComponent<IFlyable>() != null ? Random.Range(3f, 5f) : YSpawnPos;
             Vector3 spawnPosition = new Vector3(transform.position.x, YSpawnPos, transform.position.z);
             GameObject enemyGO = Instantiate(enemyReference, spawnPosition, transform.rotation);
             spawnCounter++;
-            if(spawnCounter >= MAX_SPAWNED_ENEMIES)
+            if (spawnCounter >= MAX_SPAWNED_ENEMIES)
             {
                 canSpawn = false;
                 Debug.Log("Limit reached, spawner off.");
@@ -68,4 +67,19 @@ public class EnemySpawnerController : MonoBehaviour
     {
 
     }
+
+    public void ClearAllEnemies()
+    {
+        canSpawn = false;
+        StopAllCoroutines();
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        spawnCounter = 0;
+    }
+
 }

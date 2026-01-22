@@ -19,12 +19,12 @@ public class SubMachineGun : Weapon
     {
     }
 
-    public override void Fire(int damage, float recoilOffset)
+    public override void Fire(int damage, float recoilOffset, float knockback)
     {
         float spread = Random.Range(-recoilOffset, recoilOffset);
         Quaternion spreadRotation = firePoint.rotation * Quaternion.Euler(0f, 0f, spread);
         GameObject bulletGO = Instantiate(bulletData.BulletGO, firePoint.position, spreadRotation);
-        bulletGO.GetComponent<BulletController>().Init(bulletData, damage);
+        bulletGO.GetComponent<BulletController>().Init(bulletData, damage, knockback);
         Destroy(bulletGO, 5);
     }
 }

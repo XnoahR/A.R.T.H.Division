@@ -87,7 +87,7 @@ public class DayController : MonoBehaviour
 
     private IEnumerator EndCount()
     {
-        if(isEnding) yield break;
+        if (isEnding) yield break;
         isEnding = true;
         yield return new WaitForSeconds(3);
         playerEconomy.AddMoney(income);
@@ -96,5 +96,15 @@ public class DayController : MonoBehaviour
         OnGameEnd?.Invoke(income, total);
         gameController.SetState(GAME_STATE.DAYEND);
         EndDay();
+    }
+
+    public void RestartCurrentDay()
+    {
+        StopAllCoroutines();
+
+        enemySpawnerController.ClearAllEnemies();
+
+        enemiesLeft = 0;
+        isEnding = false;
     }
 }

@@ -5,11 +5,6 @@ using UnityEngine;
 public class AirEnemy : Enemy, IFlyable, IShotable
 {
 
-    
-
-
-
-
     public override void Attack(Transform attackTarget, int damage)
     {
         Fire(attackTarget, damage);

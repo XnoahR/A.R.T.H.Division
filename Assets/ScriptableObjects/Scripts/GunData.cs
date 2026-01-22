@@ -17,7 +17,7 @@ public class GunData : ScriptableObject
     public float fireRate;
     public int damage;
     public int magazineCapacity;
-    public int punchback;
+    public float punchback;
     public int maxAmmo;
     public float reloadTime;
     public float recoil;

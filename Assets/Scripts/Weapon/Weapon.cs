@@ -36,7 +36,7 @@ public abstract class Weapon : MonoBehaviour
                 return FIREMODE.SINGLE;
         }
     }
-    public abstract void Fire(int damage, float recoilOffset);
+    public abstract void Fire(int damage, float recoilOffset, float knockback);
     protected IEnumerator MuzzleFlash()
     {
         fireFlash.gameObject.SetActive(true);

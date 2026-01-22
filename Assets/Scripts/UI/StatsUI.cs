@@ -26,6 +26,7 @@ public class StatsUI : MonoBehaviour
         UpdateBar(STAT_TYPE.FIRE_RATE, player.FireRateLevel);
         UpdateBar(STAT_TYPE.MAGAZINE_CAPACITY, player.MagazineCapacityLevel);
         UpdateBar(STAT_TYPE.RELOAD_SPEED, player.ReloadSpeedLevel);
+        UpdateBar(STAT_TYPE.PUNCHBACK, player.punchbackLevel);
 
 
     }

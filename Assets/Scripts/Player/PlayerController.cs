@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public int MagazineCapacityLevel;
     public int AttackLevel;
     public int ReloadSpeedLevel;
+    public int punchbackLevel;
     public int health;
     private bool isInvincible;
     private int MAX_HEALTH = 5;
@@ -108,18 +109,21 @@ public class PlayerController : MonoBehaviour, IDamageable
             ReloadSpeedLevel += upgradeData.reloadSpeedValue;
             OnStatChanged?.Invoke(STAT_TYPE.RELOAD_SPEED, ReloadSpeedLevel);
         }
+        if (upgradeData.punchbackValue != 0)
+        {
+            punchbackLevel += upgradeData.punchbackValue;
+            OnStatChanged?.Invoke(STAT_TYPE.PUNCHBACK, punchbackLevel);
+        }
     }
 
     private void ChangePlayState(GAME_STATE state)
     {
         canPlay = state == GAME_STATE.PLAY || state == GAME_STATE.DAYSTART;
-        Debug.Log(canPlay);
     }
 
     public void TakeDamage(int damage)
     {
         if (isInvincible) return;
-        Debug.Log("Damaged");
         health -= damage;
         StartCoroutine(InvisibilityCooldown());
 

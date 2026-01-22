@@ -93,16 +93,16 @@ public class WeaponController : MonoBehaviour
             {
                 if (currentAmmo < 1)
                 {
+                    StartCoroutine(Reload());
                     return;
                 }
                 if (fireDelay <= 0 && canShoot && !isReloading)
                 {
                     float spread = recoilOffset;
-                    if (isFocus) spread *= 0.4f;
-                    currentWeaponFunc.Fire(CalculateDamage(), spread);
+                    if (isFocus) spread *= 0.2f;
+                    currentWeaponFunc.Fire(CalculateDamage(), spread, CalculateKnockback());
                     DecreaseAmmo();
                     fireDelay = 1 / (gunData.fireRate * (1 + (playerController.FireRateLevel * 0.1f)));
-                    Debug.Log(fireDelay);
                 }
             }
             if (Input.GetKeyDown(KeyCode.R) && currentAmmo < magazineCapacity)
@@ -148,13 +148,17 @@ public class WeaponController : MonoBehaviour
 
     public int CalculateDamage()
     {
-        int damage = Mathf.FloorToInt(
+        return Mathf.FloorToInt(
             (gunData.damage + gunData.bulletData.additionalDamage)
             * (1 + (playerController.AttackLevel * 0.1f))
         );
 
-        Debug.Log(damage);
-        return damage;
+    }
+
+    public float CalculateKnockback()
+    {
+        return gunData.punchback * (1 + (playerController.punchbackLevel * 0.1f));
+
     }
 
     IEnumerator Reload()
@@ -192,7 +196,7 @@ public class WeaponController : MonoBehaviour
         currentAmmo = magazineCapacity;
         recoilOffset = gunData.recoil;
         isPermanent = gunData.isPermanent;
-        
+
         onWeaponChange?.Invoke(gunData);
         OnAmmoChange?.Invoke(currentAmmo, magazineCapacity);
 

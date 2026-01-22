@@ -21,7 +21,7 @@ public class Shotgun : Weapon
     {
     }
 
-    public override void Fire(int damage, float recoilOffset)
+    public override void Fire(int damage, float recoilOffset, float knockback)
     {
         for (int i = 0; i < pelletCount; i++)
         {
@@ -30,7 +30,7 @@ public class Shotgun : Weapon
        Quaternion.Euler(0f, 0f, firePoint.eulerAngles.z + randomAngle);
 
             GameObject bulletGO = Instantiate(bulletData.BulletGO, firePoint.position, spreadRotation);
-            bulletGO.GetComponent<BulletController>().Init(bulletData, damage);
+            bulletGO.GetComponent<BulletController>().Init(bulletData, damage, knockback);
             Destroy(bulletGO, 4);
         }
         StartCoroutine(MuzzleFlash());

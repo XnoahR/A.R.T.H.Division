@@ -19,10 +19,10 @@ public class Pistol : Weapon
     {
     }
 
-    public override void Fire(int damage, float recoilOffset)
+    public override void Fire(int damage, float recoilOffset, float knockback)
     {
         GameObject bulletGO = Instantiate(bulletData.BulletGO, firePoint.position, firePoint.rotation);
-        bulletGO.GetComponent<BulletController>().Init(bulletData, damage);
+        bulletGO.GetComponent<BulletController>().Init(bulletData, damage, knockback);
         Destroy(bulletGO, 4);
         StartCoroutine(MuzzleFlash());
         audioSource.PlayOneShot(shotSFX);
