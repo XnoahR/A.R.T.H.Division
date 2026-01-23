@@ -20,7 +20,7 @@ MonoBehaviour:
   fireRate: 9
   damage: 5
   magazineCapacity: 15
-  punchback: 1
+  punchback: 2
   maxAmmo: 0
   reloadTime: 1.5
   recoil: 14

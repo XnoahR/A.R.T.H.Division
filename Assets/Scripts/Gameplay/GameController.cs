@@ -46,6 +46,10 @@ public class GameController : MonoBehaviour
         dayController = GetComponent<DayController>();
     }
 
+    public int GetDay()
+    {
+        return dayController.currentDay;
+    }
     void Start()
     {
         SetState(GAME_STATE.DAYSTART);

@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: BoomBug
   m_EditorClassIdentifier: 
   enemyName: B4T
-  health: 10
+  health: 20
   MAX_HEALTH: 30
-  speed: 15
+  speed: 11
   damage: 25
-  attackSpeed: 3
+  attackSpeed: 1
   isFly: 1
   attackTarget: 1
+  knockbackResistance: 0.3
+  attackRange: 1

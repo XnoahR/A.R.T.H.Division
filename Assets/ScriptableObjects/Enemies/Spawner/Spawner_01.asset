@@ -13,9 +13,4 @@ MonoBehaviour:
   m_Name: Spawner_01
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 7101978922531209691, guid: baf958a4f33a1324c87e0e6b4c955b54, type: 3}
-  - {fileID: 7101978922531209691, guid: 0bd897566c5061345840b72c1e418220, type: 3}
   - {fileID: 8843931330506033743, guid: 2ff809f8b1c957a49a13249bbdadc859, type: 3}
-  - {fileID: 7101978922531209691, guid: 0bd897566c5061345840b72c1e418220, type: 3}
-  - {fileID: 7101978922531209691, guid: baf958a4f33a1324c87e0e6b4c955b54, type: 3}
-  - {fileID: 7101978922531209691, guid: baf958a4f33a1324c87e0e6b4c955b54, type: 3}

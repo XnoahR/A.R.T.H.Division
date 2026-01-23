@@ -86,6 +86,8 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentWeaponFunc == null)
+            return;
         isFocus = Input.GetMouseButton(1);
         if (playerController.canPlay)
         {

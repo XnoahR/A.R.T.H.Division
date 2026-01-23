@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: K5
   m_EditorClassIdentifier: 
   GunName: UZI
-  gunType: 1
+  gunType: 4
   shotMode: 2
   durability: 0
   isPermanent: 1

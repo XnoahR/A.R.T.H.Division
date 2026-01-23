@@ -20,3 +20,5 @@ MonoBehaviour:
   attackSpeed: 3
   isFly: 1
   attackTarget: 1
+  knockbackResistance: 1
+  attackRange: 1
