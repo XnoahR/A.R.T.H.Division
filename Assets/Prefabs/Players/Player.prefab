@@ -114,6 +114,7 @@ MonoBehaviour:
   MagazineCapacityLevel: 0
   AttackLevel: 0
   ReloadSpeedLevel: 0
+  punchbackLevel: 0
   health: 0
   isRight: 1
   canPlay: 1
@@ -179,8 +180,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: -0.08326602, y: 0.8146938}
+  m_Size: {x: 1.166532, y: 2.751311}
   m_Direction: 0
 --- !u!50 &5260144725854232501
 Rigidbody2D:
@@ -237,7 +238,7 @@ MonoBehaviour:
   - {x: 0.2800002, y: 2.3899999, z: 0}
   m_ShapePathHash: 794222597
   m_Mesh: {fileID: 0}
-  m_InstanceId: 59040
+  m_InstanceId: 54224
   m_LocalBounds:
     m_Center: {x: -0.028310299, y: 0.7880368, z: 0}
     m_Extent: {x: 0.5, y: 1.601963, z: 0}

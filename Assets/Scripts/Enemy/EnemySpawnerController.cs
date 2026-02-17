@@ -52,7 +52,7 @@ public class EnemySpawnerController : MonoBehaviour
                 countdown -= 1f;
             }
             GameObject enemyReference = spawnerReference.enemies[spawnCounter];
-            YSpawnPos = enemyReference.GetComponent<IFlyable>() != null ? Random.Range(3f, 5f) : YSpawnPos;
+            YSpawnPos = enemyReference.GetComponent<IFlyable>() != null ? Random.Range(1f, 4f) : YSpawnPos;
             Vector3 spawnPosition = new Vector3(transform.position.x, YSpawnPos, transform.position.z);
             GameObject enemyGO = Instantiate(enemyReference, spawnPosition, transform.rotation);
             spawnCounter++;
