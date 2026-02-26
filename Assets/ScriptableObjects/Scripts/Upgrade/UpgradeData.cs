@@ -16,7 +16,7 @@ public enum STAT_TYPE
   PUNCHBACK
 }
 
-[CreateAssetMenu(menuName = "Upgrade/Upgrade Data")]
+[CreateAssetMenu(menuName = "Game/Upgrade/Upgrade Data")]
 public class UpgradeData : ScriptableObject
 {
   public string upgradeName;

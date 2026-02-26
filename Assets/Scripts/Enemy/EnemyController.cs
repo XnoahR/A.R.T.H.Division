@@ -54,6 +54,7 @@ public class EnemyController : MonoBehaviour, IDamageable, Iknockable
     public void TakeDamage(int damage)
     {
         health -= damage;
+        Debug.Log(damage);
         onEnemyDamaged?.Invoke(health);
 
         if (health <= 0 && !isDie)

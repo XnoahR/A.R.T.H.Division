@@ -18,7 +18,7 @@ MonoBehaviour:
   durability: 0
   isPermanent: 0
   fireRate: 9
-  damage: 5
+  damage: 1
   magazineCapacity: 15
   punchback: 2
   maxAmmo: 0

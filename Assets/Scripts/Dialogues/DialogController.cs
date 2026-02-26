@@ -11,7 +11,6 @@ public class DialogController : MonoBehaviour
 
     public TextMeshProUGUI speakerNameText;
     public TextMeshProUGUI dialogText;
-
     public DialogData dialogData;
     string currentText = "";
     int index;

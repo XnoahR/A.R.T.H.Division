@@ -25,6 +25,9 @@ public class GameController : MonoBehaviour
     private GAME_STATE previousGameState;
     private DayController dayController;
     [SerializeField] PlayerController playerController;
+    public List<PartnerRuntimeData> partners;
+    public PartnerRuntimeData currentPartner;
+    public PartnerManager partnerManager;
     public static event Action<GAME_STATE> OnGamePaused;
     public static event Action OnGameStart;
     public static event Action OnGameRestart;
@@ -75,6 +78,10 @@ public class GameController : MonoBehaviour
             case GAME_STATE.DAYSTART:
                 playerController.SetPositionSpawn();
                 OnGameStart?.Invoke();
+                if (currentPartner.data != null)
+                {
+                    partnerManager.SpawnPartner(currentPartner);
+                }
                 dayController.StartDay();
                 OnGamePaused?.Invoke(state);
                 break;
@@ -124,6 +131,36 @@ public class GameController : MonoBehaviour
                 SetState(GAME_STATE.PLAY);
             }
         }
+    }
+
+}
+
+[System.Serializable]
+public class PartnerRuntimeData
+{
+    public PartnerData data;
+    public int level;
+    public bool unlocked;
+    private const int MAX_LEVEL = 10;
+    
+    public int GetAttack()
+    {
+        return Mathf.CeilToInt(data.baseAttack * (1 + (level * 0.1f)));
+    }
+
+    public float GetFireRate()
+    {
+        return data.baseFireRate * (1 + level * 0.1f);
+    }
+
+    public float GetReloadSpeed()
+    {
+        return data.baseReloadSpeed * (1 + level * 0.1f);
+    }
+
+    public float GetPunchback()
+    {
+        return data.basePunchback + level * 0.5f;
     }
 
 }

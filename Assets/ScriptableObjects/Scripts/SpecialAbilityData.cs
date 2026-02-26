@@ -10,7 +10,7 @@ public enum SPECIAL_TYPE
 }
 
 
-[CreateAssetMenu(menuName = "Ability/Special Ability Data")]
+[CreateAssetMenu(menuName = "Game/Ability/Special Ability")]
 public class SpecialAbilityData : AbilityData
 {
     [SerializeField] private GameObject specialObj;

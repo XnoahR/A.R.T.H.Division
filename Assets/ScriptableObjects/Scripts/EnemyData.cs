@@ -8,7 +8,7 @@ public enum TARGET
     OBJECTIVE
 }
 
-[CreateAssetMenu(menuName = "EnemyData")]
+[CreateAssetMenu(menuName = "Game/Enemy")]
 public class EnemyData : ScriptableObject
 {
     public string enemyName;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "GunData")]
+[CreateAssetMenu(menuName = "Game/Gun")]
 public class GunData : ScriptableObject
 {
     [Header("Info")]

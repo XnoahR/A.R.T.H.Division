@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Upgrade/Stats Upgrade")]
+[CreateAssetMenu(menuName = "Game/Upgrade/Stats Upgrade")]
 public class StatsUpgradeData : UpgradeData
 {
     public int attackValue;

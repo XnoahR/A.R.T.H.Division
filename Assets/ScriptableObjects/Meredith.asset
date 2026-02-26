@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5bb595571bd4a4f8164902e56c6e4c, type: 3}
+  m_Name: Meredith
+  m_EditorClassIdentifier: 
+  partnerCharacterPrefab: {fileID: 8608895556985424424, guid: 5d5bb75d2cfebd14894bc1f9d468c4bd, type: 3}
+  gunData: {fileID: 11400000, guid: a74d3f775a1467c47838bfcad24f7653, type: 2}
+  partnerName: Meredith
+  baseFireRate: 10
+  baseMagazineCapacity: 10
+  baseAttack: 0
+  baseReloadSpeed: 2
+  basePunchback: 1
+  unlockCost: 0

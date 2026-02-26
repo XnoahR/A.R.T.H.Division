@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-[CreateAssetMenu(menuName = "Ability/Self Ability Data")]
+[CreateAssetMenu(menuName = "Game/Ability/Self Ability")]
 public class SelfAbilityData : AbilityData
 {
     [SerializeField] private GameObject selfAbilityObj;
