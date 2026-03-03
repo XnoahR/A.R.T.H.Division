@@ -138,7 +138,8 @@ public class EnemyController : MonoBehaviour, IDamageable, Iknockable
     {
         while (isTargetDetected && !isKnockedBack)
         {
-            if (attackTarget == null)
+            Debug.Log("Looping Attack...");
+            if (!isTargetDetected || isKnockedBack || attackTarget == null)
             {
                 StopAttackSafe();
                 yield break;

@@ -76,10 +76,11 @@ public class PartnerWeaponController : MonoBehaviour
         if (fireDelay <= 0 && !isReloading && currentTarget != null)
         {
             Shoot();
-            fireDelay = 1f / fireRate;
+            fireDelay = 1f / gunData.fireRate * fireRate;
         }
     }
 
+#region Attack and Weapon
     void Shoot()
     {
         currentWeaponFunc.Fire(attack, 0.15f * recoil, punchback);
@@ -112,7 +113,9 @@ public class PartnerWeaponController : MonoBehaviour
 
         recoil = gunData.recoil;
     }
+#endregion
 
+#region AI and Control
     void FindTarget()
     {
         Transform nearest = FindNearestEnemy();
@@ -156,4 +159,5 @@ public class PartnerWeaponController : MonoBehaviour
 
         weaponPivot.rotation = Quaternion.Euler(0, 0, angle);
     }
+    #endregion
 }

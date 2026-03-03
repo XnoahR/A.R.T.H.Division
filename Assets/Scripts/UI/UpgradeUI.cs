@@ -7,15 +7,30 @@ using UnityEngine.UI;
 public class UpgradeUI : MonoBehaviour
 {
     [SerializeField] private DayController dayController;
-    public GameObject P1;
-    public GameObject P2;
+
+    [Header("Buttons")]
     public Button skipButton;
     public Button RefreshButton;
+    public Button UnlockButton;
+    public Button UpgradeButton;
+    public Button ActivateButton;
+
+    [Header("Texts")]
     public TextMeshProUGUI durabilityText;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI cardDescriptionText;
     public Image gunSprite;
+
+    [Header("Containers")]
+    [SerializeField] GameObject partnerContainerUI;
+    [SerializeField] GameObject upgradeContainerUI;
+    [SerializeField] GameObject partnerButtons;
+    public CanvasGroup upgradeUIGroup;
+    public GameObject P1;
+    public GameObject P2;
+
+
     public void OnEnable()
     {
         P1.gameObject.SetActive(true);
@@ -26,6 +41,7 @@ public class UpgradeUI : MonoBehaviour
         PlayerEconomy.OnMoneyChanged += UpdateMoneyText;
         UpgradeCard.OnCardHover += UpdateCardDescription;
         UpgradeCard.OnCardExit += UpdateCardDescription;
+        PartnerUpgradeController.OnCardChoosed += UpdatePartnerButtons;
     }
     void OnDisable()
     {
@@ -33,6 +49,9 @@ public class UpgradeUI : MonoBehaviour
         WeaponController.onWeaponChange -= UpdateGunData;
         WeaponController.OnDurabilityChange -= UpdateDurabilityUI;
         PlayerEconomy.OnMoneyChanged -= UpdateMoneyText;
+        UpgradeCard.OnCardHover -= UpdateCardDescription;
+        UpgradeCard.OnCardExit -= UpdateCardDescription;
+        PartnerUpgradeController.OnCardChoosed -= UpdatePartnerButtons;
     }
 
     void RefreshWeaponUI()
@@ -50,6 +69,7 @@ public class UpgradeUI : MonoBehaviour
         P1.gameObject.SetActive(false);
         dayController.UpgradePage();
         P2.gameObject.SetActive(true);
+        partnerContainerUI.SetActive(false);
         dayText.text = $"Day : {dayController.currentDay}";
         EnableButton();
         RefreshWeaponUI();
@@ -75,16 +95,52 @@ public class UpgradeUI : MonoBehaviour
 
     private void UpdateCardDescription(UpgradeData ud)
     {
-       cardDescriptionText.text = ud == null? "" : ud.description; 
+        cardDescriptionText.text = ud == null ? "" : ud.description;
     }
     public void EnableButton()
     {
-        skipButton.interactable = true;
-        RefreshButton.interactable = true;
+        upgradeUIGroup.interactable = true;
+    }
+
+
+    public void ChangeTab(GameObject tabButton)
+    {
+        if (tabButton == null) return;
+        if (tabButton.name == "UpgradeTab")
+        {
+            upgradeContainerUI.SetActive(true);
+            partnerContainerUI.SetActive(false);
+            RefreshButton.gameObject.SetActive(true);
+            partnerButtons.SetActive(false);
+        }
+        else if (tabButton.name == "PartnerTab")
+        {
+            partnerContainerUI.SetActive(true);
+            upgradeContainerUI.SetActive(false);
+            RefreshButton.gameObject.SetActive(false);
+            partnerButtons.SetActive(true);
+            ActivateButton.gameObject.SetActive(false);
+            UpgradeButton.gameObject.SetActive(false);
+            UnlockButton.gameObject.SetActive(false);
+        }
+    }
+
+    public void UpdatePartnerButtons(PartnerRuntimeData partnerRuntimeData)
+    {
+        if (partnerRuntimeData == null)
+        {
+            ActivateButton.gameObject.SetActive(false);
+            UpgradeButton.gameObject.SetActive(false);
+            UnlockButton.gameObject.SetActive(false);
+            return;
+        }
+
+        UnlockButton.gameObject.SetActive(!partnerRuntimeData.unlocked);
+        ActivateButton.gameObject.SetActive(partnerRuntimeData.unlocked);
+        UpgradeButton.gameObject.SetActive(partnerRuntimeData.unlocked);
     }
     public void DisableButton()
     {
-        skipButton.interactable = false;
-        RefreshButton.interactable = false;
+        upgradeUIGroup.interactable = false;
     }
 }

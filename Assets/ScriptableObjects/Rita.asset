@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f5bb595571bd4a4f8164902e56c6e4c, type: 3}
-  m_Name: Meredith
+  m_Name: Rita
   m_EditorClassIdentifier: 
   partnerCharacterPrefab: {fileID: 8608895556985424424, guid: 5d5bb75d2cfebd14894bc1f9d468c4bd, type: 3}
-  gunData: {fileID: 11400000, guid: a74d3f775a1467c47838bfcad24f7653, type: 2}
-  baseFireRate: 10
+  gunData: {fileID: 11400000, guid: 06c85d14ced6fa54e867e0f09d4d94e8, type: 2}
+  baseFireRate: 5
   baseMagazineCapacity: 10
-  baseAttack: 5
-  baseReloadSpeed: 2
-  basePunchback: 1
-  partnerName: Meredith
-  partnerWeapon: SMG
-  partnerSprite: {fileID: 21300000, guid: c2c614205920cf948a8785aaf0837cdd, type: 3}
+  baseAttack: 9
+  baseReloadSpeed: 5
+  basePunchback: 5
+  partnerName: Rita
+  partnerWeapon: Sniper
+  partnerSprite: {fileID: 21300000, guid: 44d2293b70fa08743a61ce987b2ef1ed, type: 3}
   unlockCost: 15

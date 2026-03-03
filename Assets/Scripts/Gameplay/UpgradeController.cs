@@ -13,6 +13,7 @@ public class UpgradeController : MonoBehaviour
     [SerializeField] UpgradeContainer upgradeContainer;
     [SerializeField] GameObject player;
     [SerializeField] GameController gameController;
+    
 
     [Header("Settings")]
     [SerializeField] int refreshCost = 2;
@@ -35,7 +36,10 @@ public class UpgradeController : MonoBehaviour
         currentChoices = UpgradeRandomizer.Generate(upgradeData, 3);
         upgradeContainer.Show(currentChoices, this);
     }
-
+    public void PartnerGenerate()
+    {
+        
+    }
     public void Choose(UpgradeData data)
     {
         var economy = player.GetComponent<PlayerEconomy>();

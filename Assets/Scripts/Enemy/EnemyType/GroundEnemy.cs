@@ -10,7 +10,12 @@ public class GroundEnemy : Enemy
 
     public override void Attack(Transform attackTarget, int damage)
     {
-        StartCoroutine(spawnAttackArea());
+        if (attackTarget.TryGetComponent<IDamageable>(out var dmg))
+        {
+            dmg.TakeDamage(damage);
+        }
+
+        StartCoroutine(spawnAttackArea()); // hanya visual
     }
 
     IEnumerator spawnAttackArea()

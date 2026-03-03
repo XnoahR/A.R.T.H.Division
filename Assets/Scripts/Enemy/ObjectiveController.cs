@@ -27,11 +27,13 @@ public class ObjectiveController : MonoBehaviour, IDamageable
 
     void OnEnable()
     {
+        GameController.OnGameStart += StartHealthRegen;
         GameController.OnGameRestart += ResetObjective;
     }
 
     void OnDisable()
     {
+        GameController.OnGameStart -= StartHealthRegen;
         GameController.OnGameRestart -= ResetObjective;
     }
     public void TakeDamage(int damage)
@@ -45,10 +47,16 @@ public class ObjectiveController : MonoBehaviour, IDamageable
             GameOver();
         }
     }
+    void StartHealthRegen()
+    {
+        health += Mathf.FloorToInt(health*0.5f);
+        if (health > maxHealth) health = maxHealth;
+        OnObjectiveHealthChanged?.Invoke(health);
+    }
     public void RegenHealth(int regen)
     {
         health += regen;
-        if (health > 100) health = 100;
+        if (health > maxHealth) health = maxHealth;
         OnObjectiveHealthChanged?.Invoke(health);
 
     }

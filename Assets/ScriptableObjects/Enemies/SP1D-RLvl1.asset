@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SP1D-RLvl1
   m_EditorClassIdentifier: 
   enemyName: SP1D-R
-  health: 100
-  MAX_HEALTH: 75
+  health: 60
+  MAX_HEALTH: 60
   speed: 3
-  damage: 15
-  attackSpeed: 1
+  damage: 5
+  attackSpeed: 2
   isFly: 0
   attackTarget: 1
   knockbackResistance: 1

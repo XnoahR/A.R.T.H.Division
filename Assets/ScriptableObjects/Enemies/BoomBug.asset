@@ -16,7 +16,7 @@ MonoBehaviour:
   health: 20
   MAX_HEALTH: 30
   speed: 11
-  damage: 25
+  damage: 10
   attackSpeed: 1
   isFly: 1
   attackTarget: 1

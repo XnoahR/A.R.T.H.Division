@@ -25,7 +25,12 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        objectiveHealthBar.Initialize(100);
+        healthBarInitiation(250);
+    }
+
+    public void healthBarInitiation(int value)
+    {
+        objectiveHealthBar.Initialize(value);
     }
     void OnEnable()
     {

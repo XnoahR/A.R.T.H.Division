@@ -141,7 +141,7 @@ public class WeaponController : MonoBehaviour
             playerController.Flip(weaponPivot);
         }
     }
-
+    #region Weapon Utilities
     void DecreaseAmmo()
     {
         currentAmmo--;
@@ -178,6 +178,10 @@ public class WeaponController : MonoBehaviour
         bool input = currentWeaponFunc.FireMode == Weapon.FIREMODE.FULLAUTO ? Input.GetButton("Fire1") : Input.GetButtonDown("Fire1");
         return input;
     }
+
+    #endregion
+
+    #region Weapon System
     void SetupWeapon(GunData gunData)
     {
         if (currentWeapon != null)
@@ -234,4 +238,6 @@ public class WeaponController : MonoBehaviour
             ChangeWeapon(pistolData);
         }
     }
+
+    #endregion
 }

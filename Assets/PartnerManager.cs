@@ -4,20 +4,32 @@ using UnityEngine;
 
 public class PartnerManager : MonoBehaviour
 {
-    [SerializeField] GameObject currentPartnerObj;
+    [SerializeField] PartnerRuntimeSystem runtimeSystem;
+    [SerializeField] GameObject partnerPrefab;
     [SerializeField] Transform partnerSpawner;
-    public void SpawnPartner(PartnerRuntimeData runtimeData)
+
+    void OnEnable()
     {
-        if(runtimeData == null) return;
-        if(currentPartnerObj != null)
+        GameController.OnGameStart += SpawnPartner;
+    }
+    void OnDisable()
+    {
+        GameController.OnGameStart -= SpawnPartner;
+    }
+
+    public void SpawnPartner()
+    {
+        PartnerRuntimeData runtimeData = runtimeSystem.currentPartner;
+        if(runtimeData == null || runtimeData.data == null) return;
+        if(partnerPrefab != null)
         {
-            Destroy(currentPartnerObj);
+            Destroy(partnerPrefab);
         }
 
-        currentPartnerObj = Instantiate(runtimeData.data.partnerCharacterPrefab);
-        currentPartnerObj.transform.position = partnerSpawner.transform.position;
-        var controller = currentPartnerObj.GetComponent<PartnerController>();
-        var weaponController = currentPartnerObj.GetComponent<PartnerWeaponController>();
+        partnerPrefab = Instantiate(runtimeData.data.partnerCharacterPrefab);
+        partnerPrefab.transform.position = partnerSpawner.transform.position;
+        var controller = partnerPrefab.GetComponent<PartnerController>();
+        var weaponController = partnerPrefab.GetComponent<PartnerWeaponController>();
         controller.Init(runtimeData);
         weaponController.Init(runtimeData);
     }
