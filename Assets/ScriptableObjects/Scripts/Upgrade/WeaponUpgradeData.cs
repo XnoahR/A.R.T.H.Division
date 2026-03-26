@@ -6,8 +6,9 @@ public class WeaponUpgradeData : UpgradeData
    public GunData gunData;
 
    
-   public override void Apply(GameObject target)
+   public override void Apply()
     {
-        target.GetComponent<WeaponController>().ChangeWeapon(gunData);
+        GameController.Instance.playerData.currentWeapon = gunData;
+        UpgradeController.BroadcastWeaponUpgrade(gunData);
     }
 }

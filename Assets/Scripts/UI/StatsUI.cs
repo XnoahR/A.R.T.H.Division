@@ -19,23 +19,24 @@ public class StatsUI : MonoBehaviour
 
     void OnEnable()
     {
-        player.OnStatChanged += UpdateStat;
-
-
-        UpdateBar(STAT_TYPE.ATTACK, player.AttackLevel);
-        UpdateBar(STAT_TYPE.FIRE_RATE, player.FireRateLevel);
-        UpdateBar(STAT_TYPE.MAGAZINE_CAPACITY, player.MagazineCapacityLevel);
-        UpdateBar(STAT_TYPE.RELOAD_SPEED, player.ReloadSpeedLevel);
-        UpdateBar(STAT_TYPE.PUNCHBACK, player.punchbackLevel);
-
-
+        UpgradeController.OnStatsUpgraded += UpdateStat;
+        EarlyBarUpdate();
     }
+
 
     void OnDisable()
     {
-        player.OnStatChanged -= UpdateStat;
+        UpgradeController.OnStatsUpgraded -= UpdateStat;
     }
-
+    void EarlyBarUpdate()
+    {
+        PlayerData data = GameController.Instance.playerData;
+        UpdateBar(STAT_TYPE.ATTACK, data.attackLevel);
+        UpdateBar(STAT_TYPE.FIRE_RATE, data.fireRateLevel);
+        UpdateBar(STAT_TYPE.MAGAZINE_CAPACITY, data.magazineCapacityLevel);
+        UpdateBar(STAT_TYPE.RELOAD_SPEED, data.reloadSpeedLevel);
+        UpdateBar(STAT_TYPE.PUNCHBACK, data.punchbackLevel);
+    }
     void UpdateStat(STAT_TYPE type, int level)
     {
         UpdateBar(type, level);

@@ -27,5 +27,5 @@ public class UpgradeData : ScriptableObject
     public STAT_TYPE type;
     public int cost;
 
-    public virtual void Apply(GameObject target) { }
+    public virtual void Apply() { }
 }

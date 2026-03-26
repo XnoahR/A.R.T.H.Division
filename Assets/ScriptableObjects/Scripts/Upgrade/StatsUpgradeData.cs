@@ -9,8 +9,10 @@ public class StatsUpgradeData : UpgradeData
     public int fireRateValue;
     public int punchbackValue;
 
-    public override void Apply(GameObject target)
+    public override void Apply()
     {
-        target.GetComponent<PlayerController>()?.AddStats(this);
+       GameController.Instance.upgradeController.AddStats(this);
     }
+
+   
 }

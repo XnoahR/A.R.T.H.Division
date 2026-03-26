@@ -29,6 +29,7 @@ public class UpgradeUI : MonoBehaviour
     public CanvasGroup upgradeUIGroup;
     public GameObject P1;
     public GameObject P2;
+    public GameObject UpgradeTabButton;
 
 
     public void OnEnable()
@@ -72,6 +73,7 @@ public class UpgradeUI : MonoBehaviour
         partnerContainerUI.SetActive(false);
         dayText.text = $"Day : {dayController.currentDay}";
         EnableButton();
+        ChangeTab(UpgradeTabButton);
         RefreshWeaponUI();
     }
 

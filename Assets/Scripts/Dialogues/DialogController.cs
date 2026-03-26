@@ -2,12 +2,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System.Collections;
+using UnityEngine.SceneManagement;
+using System;
 
 public class DialogController : MonoBehaviour
 {
     public Image backgroundImage;
     public Image LeftPortrait;
+    public Image MiddlePortrait;
     public Image RightPortrait;
+
+    public AudioSource SFXSource;
+    public AudioSource BGMSource;
 
     public TextMeshProUGUI speakerNameText;
     public TextMeshProUGUI dialogText;
@@ -19,6 +26,7 @@ public class DialogController : MonoBehaviour
     bool isPlaying;
     bool isTyping;
 
+    public static event Action<String> OnSceneChanged;
     private void Start()
     {
         PlayDialogue(dialogData);
@@ -33,7 +41,8 @@ public class DialogController : MonoBehaviour
         dialogData = data;
         index = 0;
         isPlaying = true;
-
+        SFXSource.Stop();
+        BGMSource.Stop();
         gameObject.SetActive(true);
 
         ShowLine();
@@ -41,19 +50,43 @@ public class DialogController : MonoBehaviour
 
     void ShowLine()
     {
-        var line = dialogData.lines[index];
+        if (dialogData.lines[index].audio.soundEffect != null)
+        {
+            SFXSource.PlayOneShot(dialogData.lines[index].audio.soundEffect);
+        }
+        if (dialogData.lines[index].audio.audioBackground != null)
+        {
+            BGMSource.PlayOneShot(dialogData.lines[index].audio.audioBackground);
+        }
 
-        speakerNameText.text = line.speakerName;
-        currentText = line.text;
+        var line = dialogData.lines[index];
+        if (line.visual.background != null)
+        {
+            backgroundImage.sprite = line.visual.background;
+        }
+        speakerNameText.text = line.content.speakerName;
+        currentText = line.content.text;
         TypeWrite(currentText);
 
-        if (line.background != null)
-            backgroundImage.sprite = line.background;
+        if (line.visual.background != null)
+            backgroundImage.sprite = line.visual.background;
 
-        if (line.side == PortraitSide.LEFT)
-            SetPortrait(LeftPortrait, line.portrait);
+        if (line.visual.side == PortraitSide.LEFT)
+            SetPortrait(LeftPortrait, line.visual.portrait);
+        else if (line.visual.side == PortraitSide.RIGHT)
+            SetPortrait(RightPortrait, line.visual.portrait);
         else
-            SetPortrait(RightPortrait, line.portrait);
+            SetPortrait(MiddlePortrait, line.visual.portrait);
+    }
+
+    void ClearPortrait(PortraitSide side)
+    {
+        if (side == PortraitSide.LEFT)
+            SetPortrait(LeftPortrait, null);
+        else if (side == PortraitSide.RIGHT)
+            SetPortrait(RightPortrait, null);
+        else
+            SetPortrait(MiddlePortrait, null);
     }
 
     void TypeWrite(string textData)
@@ -75,6 +108,16 @@ public class DialogController : MonoBehaviour
 
     void NextLine()
     {
+
+        if (dialogData.lines[index].audio.audioStop)
+        {
+            BGMSource.Stop();
+        }
+
+        if (dialogData.lines[index].visual.clearPortrait)
+        {
+            ClearPortrait(dialogData.lines[index].visual.side);
+        }
         index++;
 
         if (index >= dialogData.lines.Length)
@@ -90,8 +133,11 @@ public class DialogController : MonoBehaviour
     {
         isPlaying = false;
         isTyping = false;
-
-        gameObject.SetActive(false);
+        if (!string.IsNullOrEmpty(dialogData.nextSceneName))
+        {
+            OnSceneChanged?.Invoke(dialogData.nextSceneName);
+        }
+        StartCoroutine(EndDialogTime());
     }
 
     void Update()
@@ -124,5 +170,11 @@ public class DialogController : MonoBehaviour
         portraitImage.sprite = portraitData;
         portraitImage.preserveAspect = true;
         portraitImage.gameObject.SetActive(true);
+    }
+
+    IEnumerator EndDialogTime()
+    {
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
     }
 }

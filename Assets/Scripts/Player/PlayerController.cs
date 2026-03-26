@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     private int MAX_HEALTH = 5;
     public bool isRight = true;
     public bool canPlay = true;
-    public event Action<STAT_TYPE, int> OnStatChanged;
     [SerializeField] Transform spawnPoint;
     public Transform abilitySpawnPoint;
     private float facing;
@@ -30,10 +29,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     void OnEnable()
     {
         GameController.OnGamePaused += ChangePlayState;
+        UpgradeController.OnStatsUpgraded += OnStatsUpgraded;
     }
     void OnDisable()
     {
-        GameController.OnGamePaused += ChangePlayState;
+        GameController.OnGamePaused -= ChangePlayState;
+        UpgradeController.OnStatsUpgraded -= OnStatsUpgraded;
     }
 
     void Awake()
@@ -42,7 +43,26 @@ public class PlayerController : MonoBehaviour, IDamageable
         SetMaxHealth();
         SetPositionSpawn();
     }
+    void Start()
+    {
+        LoadStats();
+    }
 
+    void OnStatsUpgraded(STAT_TYPE type, int value)
+    {
+        LoadStats();
+    }
+    void LoadStats()
+    {
+        PlayerData data = GameController.Instance.playerData;
+
+        FireRateLevel = data.fireRateLevel;
+        MagazineCapacityLevel = data.magazineCapacityLevel;
+        AttackLevel = data.attackLevel;
+        ReloadSpeedLevel = data.reloadSpeedLevel;
+        punchbackLevel = data.punchbackLevel;
+
+    }
     public void SetMaxHealth()
     {
         health = MAX_HEALTH;
@@ -84,37 +104,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    public void AddStats(StatsUpgradeData upgradeData)
-    {
-        if (upgradeData.attackValue != 0)
-        {
-            AttackLevel += upgradeData.attackValue;
-            OnStatChanged?.Invoke(STAT_TYPE.ATTACK, AttackLevel);
-        }
-
-        if (upgradeData.fireRateValue != 0)
-        {
-            FireRateLevel += upgradeData.fireRateValue;
-            OnStatChanged?.Invoke(STAT_TYPE.FIRE_RATE, FireRateLevel);
-        }
-
-        if (upgradeData.magazineCapacityValue != 0)
-        {
-            MagazineCapacityLevel += upgradeData.magazineCapacityValue;
-            OnStatChanged?.Invoke(STAT_TYPE.MAGAZINE_CAPACITY, MagazineCapacityLevel);
-        }
-
-        if (upgradeData.reloadSpeedValue != 0)
-        {
-            ReloadSpeedLevel += upgradeData.reloadSpeedValue;
-            OnStatChanged?.Invoke(STAT_TYPE.RELOAD_SPEED, ReloadSpeedLevel);
-        }
-        if (upgradeData.punchbackValue != 0)
-        {
-            punchbackLevel += upgradeData.punchbackValue;
-            OnStatChanged?.Invoke(STAT_TYPE.PUNCHBACK, punchbackLevel);
-        }
-    }
 
     private void ChangePlayState(GAME_STATE state)
     {

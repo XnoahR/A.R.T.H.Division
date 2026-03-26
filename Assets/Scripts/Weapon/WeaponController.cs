@@ -63,11 +63,13 @@ public class WeaponController : MonoBehaviour
     {
         GameController.OnGameStart += Init;
         DayController.OnDayEnded += decreaseDurability;
+        UpgradeController.OnWeaponUpgraded += ChangeWeapon;
     }
     void OnDisable()
     {
         GameController.OnGameStart -= Init;
         DayController.OnDayEnded -= decreaseDurability;
+        UpgradeController.OnWeaponUpgraded -= ChangeWeapon;
     }
 
     public void Init()

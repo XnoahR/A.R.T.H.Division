@@ -16,6 +16,8 @@ namespace Core.Game
         PLAY,
         PAUSE,
         UPGRADE,
+        CUTSCENE,
+        IDLE
 
     }
 }
@@ -24,6 +26,7 @@ public class GameController : MonoBehaviour
     public GAME_STATE currentGameState;
     private GAME_STATE previousGameState;
     private DayController dayController;
+    public UpgradeController upgradeController;
     [SerializeField] PlayerController playerController;
     public PartnerManager partnerManager;
     public static event Action<GAME_STATE> OnGamePaused;
@@ -35,6 +38,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance { get; private set; }
 
     public GAME_STATE CurrentState { get; private set; }
+    public PlayerData playerData = new PlayerData();
 
     void Awake()
     {
@@ -44,7 +48,9 @@ public class GameController : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         dayController = GetComponent<DayController>();
+        upgradeController = GetComponent<UpgradeController>();
     }
 
     public int GetDay()
